@@ -56,9 +56,11 @@
  * @function cacheUrlFetchApp
  * @description Checks if the return from a Url fetch is in cache. If so, retrieves it from cache instead of making another network request. If not, makes a new request and adds it to the cache.
  * @summary Speeds up execution by storing frequently requested data to the cache.
- * @param   {String}    fetchUrl
- * @param   {Object}    parameters(Optional)
- * @return  {*}
+ * @param       {string}        fetchUrl                        - The address to which to make the request
+ * @param       {object}        [parameters]                    - Optional Parameters
+ * @property    {string}        [parameters.method = `get`]     - The API method to use
+ * @property    {string}        [parameters.payload = ``]       - Optional payload
+ * @return      {*}             result                          - The result of the fetch
  */
 function cacheUrlFetchApp(
 	fetchUrl,
@@ -66,32 +68,29 @@ function cacheUrlFetchApp(
 ) {
 	// Set up public cache
 	const cache = CacheService.getScriptCache();
-	// Turn the requested Url into a string based on the MD5
+	// convert Url into a string based on MD5
 	const digest = Utilities.base64Encode(
 		Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, fetchUrl)
 	);
-	// Based on this MD5, lookup the Url in the cache
+	// using digest as key, check if it is in cache
 	const cached = cache.get(digest);
-	// If a result has been already cached, use it
+	// if a result is already cached, use it
 	if (cached != null) {
 		return cached;
 	}
-	// Make the network requests at random intervals to avoid server overload
+	// random "wait" invertals between requests to avoid server overload
 	Utilities.sleep(Math.random() * 5000);
-	// Fetch the Url
-	const resultXML = UrlFetchApp.fetch(fetchUrl, parameters);
-	// Get the text of the Url call
-	const result = resultXML.getContentText();
-	// Cache the result
+	// do the fetch
+	const result = UrlFetchApp.fetch(fetchUrl, parameters).getContentText();
+	// cache result
 	cache.put(digest, result, 21600); //maximum cache time is 6 hours, or 21600 seconds.
-	// return the result
+	// return result
 	return result;
 }
 /**
  * @function getData
  * @description Takes as input a table name, a table address, and a toggle for using the cache service. If a table name and a table address are boh provided, the script will use the address. The response is parsed as JSON on the return.
  * @summary Fetches the given Eve Online Static Data Export .JSON conversion and returns the parsed JSON
- *
  * @param {object} options - An object containing properties which are parameters for getData
  * @property {(string|boolean)} [options.tableName = false] - The name of the desired .JSON conversion file.
  * @property {(string|boolean)} [options.tableAddress = false] - The address of the desired .JSON conversion file, has preference over options.tableName.
@@ -134,8 +133,8 @@ function getData({
 /**
  * @constant industryActivities
  * @description An array of objects representing different industry activities and their IDs
- * @property {number} activityID 
- * @property {string} activityName 
+ * @property {number} activityID
+ * @property {string} activityName
  */
 const industryActivities = [
 	{
@@ -220,9 +219,9 @@ const invCategories = getData({
 /**
  * @constant invGroups
  * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invGroups", the list is filtered for only published entries.
- * @property {number} groupID 
+ * @property {number} groupID
  * @property {string} groupName
- * @property {string} categoryID 
+ * @property {string} categoryID
  * @example [...{ groupID, groupName, categoryID }]
  */
 const invGroups = getData({
@@ -253,9 +252,9 @@ const invGroups = getData({
  * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invTypes", the list is filtered for only published entries and only certain attributes are mapped.
  * @property {(string|number)} typeID -
  * @property {string} typeName -
- * @property {string} description - 
- * @property {(string|number)} groupID - 
- * @property {(string|number)} marketGroupID -  
+ * @property {string} description -
+ * @property {(string|number)} groupID -
+ * @property {(string|number)} marketGroupID -
  * @example [...{ typeID, typeName, description, groupID, marketGroupID }]
  */
 const invTypes = getData({
@@ -305,7 +304,7 @@ const industryActivityMaterials = getData({
 /**
  * @const industryActivityProducts
  * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivityProducts", the list is filtered for only published entries and only certain attributes are mapped.
- * @example [...{typeID, typename, producttypeID, quantity}]
+ * @example [...{typeID, typeName, productTypeID, quantity}]
  */
 const industryActivityProducts = getData({
 	tableName: 'industryActivityProducts'
@@ -313,11 +312,9 @@ const industryActivityProducts = getData({
 	.filter(entry => {
 		return (
 			publishedTypeIDs.includes(entry.typeID) &amp;&amp;
-			publishedTypeIDs.includes(entry.productTypeID)
+			publishedTypeIDs.includes(entry.productTypeID) &amp;&amp;
+			(entry.activityID == 1 || entry.activityID == 9)
 		);
-	})
-	.filter(entry => {
-		return entry.activityID == 1 || entry.activityID == 9;
 	})
 	.map(entry => {
 		return {
@@ -347,7 +344,7 @@ const industryActivity = getData({
 /**
  * @constant industryActivityProbabilities
  * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivityProbabilities."
- * @example [...{typeID, activityID, materialtypeID, quantity}]
+ * @example [...{typeID, activityID, materialTypeID, quantity}]
  */
 const industryActivityProbabilities = getData({
 	tableName: `industryActivityProbabilities`
@@ -361,7 +358,7 @@ const industryActivityProbabilities = getData({
 /**
  * @constant industryActivitySkills
  * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivitySkills."
- * @example [...{typeID, activityID, materialtypeID, quantity}]
+ * @example [...{typeID, activityID, materialTypeID, quantity}]
  */
 const industryActivitySkills = getData({
 	tableName: `industryActivitySkills`
@@ -387,7 +384,9 @@ function typeName(typeID) {
 	// return "typename" from entry if it is defined...
 	return typeof type != 'undefined'
 		? type.typeName
-		: new Error(`typeName from typeID ${typeID} is ${typeof type}`);
+		: new Error(
+				`typeName({${typeof typeID}} ${typeID}) cannot be: ${typeof type}.typeName`
+		  );
 }
 /**
  * @function groupID
@@ -404,7 +403,9 @@ function groupID(typeID) {
 	// return "typename" from entry if it is defined...
 	return typeof group != 'undefined'
 		? group.groupID
-		: new Error(`groupID from typeID ${typeID} is ${typeof group}`);
+		: new Error(
+				`groupID({${typeof typeID}} ${typeID}) cannot be: ${typeof group}.groupID`
+		  );
 }
 /**
  * @function groupName
@@ -421,7 +422,9 @@ function groupName(groupID) {
 	// return "typename" from entry if it is defined...
 	return typeof group != 'undefined'
 		? group.groupName
-		: new Error(`groupName from groupID ${groupID} is ${typeof group}`);
+		: new Error(
+				`groupName({${typeof groupID}} ${groupID}) cannot be: ${typeof group}.groupName`
+		  );
 }
 /**
  * @function marketGroupID
@@ -436,7 +439,7 @@ function marketGroupID(typeID) {
 	return typeof marketGroup != `undefined`
 		? marketGroup.marketGroupID
 		: new Error(
-				`marketGroupID from typeID ${typeID} is ${typeof marketgroup}.`
+				`marketGroupID({${typeof typeID}} ${typeID}) cannot be: ${typeof marketGroup}.marketGroupID`
 		  );
 }
 /**
@@ -452,8 +455,7 @@ function marketGroupName(marketGroupID) {
 	return typeof marketGroup != `undefined`
 		? marketGroup.marketGroupName
 		: new Error(
-				`marketGroupName failed with param(s) {${typeof marketGroupID}} ${marketGroupID} 
-          Output: ${marketGroup}.marketGroupName`
+				`marketGroupName({${typeof marketGroupID}} ${marketGroupID}) cannot be: ${typeof marketGroup}.groupID`
 		  );
 }
 /**
@@ -468,7 +470,9 @@ function categoryID(groupID) {
 	});
 	return typeof category != `undefined`
 		? category.categoryID
-		: new Error(`categoryID from groupID ${groupID} is ${typeof category}`);
+		: new Error(
+				`categoryID({${typeof groupID}} ${groupID}) cannot be: ${typeof category}.categoryID`
+		  );
 }
 /**
  * @function categoryName
@@ -486,7 +490,7 @@ function categoryName(categoryID) {
 	return typeof category != 'undefined'
 		? category.categoryName
 		: new Error(
-				`categoryName from categoryID ${categoryID} is ${typeof category}`
+				`categoryName({${typeof categoryID}} ${categoryID}) cannot be: ${typeof category}.categoryName`
 		  );
 }
 /**
@@ -505,7 +509,7 @@ function activityName(activityID) {
 	return typeof activity != 'undefined'
 		? activity.activityName
 		: new Error(
-				`activityName from activityID ${activityID} is ${typeof activity}`
+				`activityName({${typeof activityID}} ${activityID}) cannot be: ${typeof activity}.activityName`
 		  );
 }
 /**
@@ -617,7 +621,7 @@ function blueprints() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Thu Dec 15 2022 10:35:56 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Thu Dec 15 2022 17:23:59 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
