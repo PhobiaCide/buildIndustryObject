@@ -1,8 +1,94 @@
 /**
- * @name industryActivity
- * @description An array of objects representing different industry activities and their IDs
+ * @file buildIndustryObject.js
+ * @version 2.0.0
+ * @author PhobiaCide
+ * @copyright 2022 Andrew Amason
  */
 
+/**
+ * @function cacheUrlFetchApp
+ * @description Checks if the return from a Url fetch is in cache. If so, retrieves it from cache instead of making another network request. If not, makes a new request and adds it to the cache.
+ * @summary Speeds up execution by storing frequently requested data to the cache.
+ * @param       {string}        fetchUrl                        - The address to which to make the request
+ * @param       {object}        [parameters]                    - Optional Parameters
+ * @property    {string}        [parameters.method = `get`]     - The API method to use
+ * @property    {string}        [parameters.payload = ``]       - Optional payload
+ * @return      {*}             result                          - The result of the fetch
+ */
+function cacheUrlFetchApp(
+	fetchUrl,
+	parameters = { method: `get`, payload: `` }
+) {
+	// Set up public cache
+	const cache = CacheService.getScriptCache();
+	// convert Url into a string based on MD5
+	const digest = Utilities.base64Encode(
+		Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, fetchUrl)
+	);
+	// using digest as key, check if it is in cache
+	const cached = cache.get(digest);
+	// if a result is already cached, use it
+	if (cached != null) {
+		return cached;
+	}
+	// random "wait" invertals between requests to avoid server overload
+	Utilities.sleep(Math.random() * 5000);
+	// do the fetch
+	const result = UrlFetchApp.fetch(fetchUrl, parameters).getContentText();
+	// cache result
+	cache.put(digest, result, 21600); //maximum cache time is 6 hours, or 21600 seconds.
+	// return result
+	return result;
+}
+/**
+ * @function getData
+ * @description Takes as input a table name, a table address, and a toggle for using the cache service. If a table name and a table address are boh provided, the script will use the address. The response is parsed as JSON on the return.
+ * @summary Fetches the given Eve Online Static Data Export .JSON conversion and returns the parsed JSON
+ * @param {object} options - An object containing properties which are parameters for getData
+ * @property {(string|boolean)} [options.tableName = false] - The name of the desired .JSON conversion file.
+ * @property {(string|boolean)} [options.tableAddress = false] - The address of the desired .JSON conversion file, has preference over options.tableName.
+ * @property {boolean} [options.useCache = false] - Weather to use the cache service or not
+ *
+ * @return {object}
+ */
+function getData({
+	tableName = false,
+	tableAddress = false,
+	useCache = false
+} = options) {
+	return !tableAddress
+		? !tableName
+			? new Error(
+					`getData({
+         tableName:_______{${typeof tableName}}________${tableName},
+         tableAddress:____{${typeof tableAddress}}_____${tableAddress}})
+         Error: No valid arguments!`
+			  )
+			: !useCache
+			? JSON.parse(
+					UrlFetchApp.fetch(
+						tables.find(table => {
+							return table.name == tableName;
+						}).href
+					).getContentText()
+			  )
+			: JSON.parse(
+					cacheUrlFetchApp(
+						tables.find(table => {
+							return table.name == tableName;
+						}).href
+					)
+			  )
+		: !useCache
+		? JSON.parse(UrlFetchApp.fetch(tableAddress).getContentText())
+		: JSON.parse(cacheUrlFetchApp(tableAddress));
+}
+/**
+ * @constant industryActivities
+ * @description An array of objects representing different industry activities and their IDs
+ * @property {number} activityID
+ * @property {string} activityName
+ */
 const industryActivities = [
 	{
 		activityID: 1,
@@ -29,71 +115,20 @@ const industryActivities = [
 		activityName: 'Reactions'
 	}
 ];
-
 /**
- * @name getData_
- * @description Takes as input a table name, a table address, and a toggle for using the cache service. If a table name and a table address are boh provided, the script will use the address. The response is parsed as JSON on the return.
- * @summary Fetches the given Eve Online Static Data Export .JSON conversion and returns the parsed JSON
- * @version 2.0.0
- * @date Dec 13, 2022
- * @author PhobiaCide
- * @copyright Andrew Amason 2022
- *
- * @param {object} options - An object containing properties which are parameters for getData_
- * @property {string} options.tableName - The name of the desired .JSON conversion file, defaults to {boolean} false
- * @property {string} options.tableAddress - The address of the desired .JSON conversion file, has preference over options.tableName, defaults to {boolean} false
- * @property {boolean} options.useCache - Weather to use the cache service or not
- *
- * @return {object}
- */
-function getData_({
-	tableName = false,
-	tableAddress = false,
-	useCache = false
-} = options) {
-	return !tableAddress
-		? !tableName
-			? new Error(`getData_({
-           tableName:_______{${typeof tableName}}________${tableName},
-           tableAddress:____{${typeof tableAddress}}_____${tableAddress}
-         }); 
-         Error: No valid arguments!`)
-			: !useCache
-			? JSON.parse(
-					UrlFetchApp.fetch(
-						tables.find(table => {
-							return table.name == tableName;
-						}).href
-					).getContentText()
-			  )
-			: JSON.parse(
-					cacheUrlFetchApp_(
-						tables.find(table => {
-							return table.name == tableName;
-						}).href
-					)
-			  )
-		: !useCache
-		? JSON.parse(UrlFetchApp.fetch(tableAddress).getContentText())
-		: JSON.parse(cacheUrlFetchApp_(tableAddress));
-}
-
-/**
- * @name tables
+ * @constant tables
  * @description An array of objects, each of wich contains a name and address to an Eve Online Static Data Export .JSON conversion
- *
- * @return null
  */
-const tables = getData_({
+const tables = getData({
 	tableAddress: 'http://sde.zzeve.com/tables.json',
 	useCache: true
 });
-
 /**
- * @name invMarketGroups
+ * @constant invMarketGroups
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invMarketGroups."
  * @example [...{ marketGroupID, marketGroupName, description }]
  */
-const invMarketGroups = getData_({
+const invMarketGroups = getData({
 	tableName: 'invMarketGroups'
 })
 	.map(entry => {
@@ -106,13 +141,12 @@ const invMarketGroups = getData_({
 	.sort((a, b) => {
 		return a.marketGroupID - b.marketGroupID;
 	});
-
 /**
- * @name invcategories
- * @description An array of objects, each of which represents a different item category from the game, Eve Online. The list is filtered for only published entries and only certain attributes are mapped.
+ * @constant invCategories
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invCategories", the list is filtered for only published entries.
  * @example [...{ categoryID, categoryName }]
  */
-const invCategories = getData_({
+const invCategories = getData({
 	tableName: `invCategories`,
 	useCache: true
 })
@@ -135,13 +169,15 @@ const invCategories = getData_({
 	.sort((a, b) => {
 		return a.categoryID - b.categoryID;
 	});
-
 /**
- * @name invGroups
- * @description An array of objects, each of which represents a different item group from the game, Eve Online. The list is filtered for only published entries and only certain attributes are mapped.
+ * @constant invGroups
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invGroups", the list is filtered for only published entries.
+ * @property {number} groupID
+ * @property {string} groupName
+ * @property {string} categoryID
  * @example [...{ groupID, groupName, categoryID }]
  */
-const invGroups = getData_({
+const invGroups = getData({
 	tableName: `invGroups`
 })
 	.filter(
@@ -164,13 +200,17 @@ const invGroups = getData_({
 	.sort((a, b) => {
 		return a.groupID - b.groupID;
 	});
-
 /**
- * @name invTypes
- * @description An array of objects, each of which represents a different Eve Online item. The list is filtered for only published entries and only certain attributes are mapped.
+ * @constant invTypes
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "invTypes", the list is filtered for only published entries and only certain attributes are mapped.
+ * @property {(string|number)} typeID -
+ * @property {string} typeName -
+ * @property {string} description -
+ * @property {(string|number)} groupID -
+ * @property {(string|number)} marketGroupID -
  * @example [...{ typeID, typeName, description, groupID, marketGroupID }]
  */
-const invTypes = getData_({
+const invTypes = getData({
 	tableName: 'invTypes'
 })
 	.filter(
@@ -195,20 +235,17 @@ const invTypes = getData_({
 	.sort((a, b) => {
 		return a.typeID - b.typeID;
 	});
-
 /**
- *
+ * @constant publishedTypeIDs
+ * @description Takes invTypes and takes the typeID from each entry and returns them all in an array
  */
 const publishedTypeIDs = invTypes.map(entry => entry.typeID);
-
 /**
- * @name industryActivityMaterials
- * @description Executes immediately and returns an array of objects
- * @example [...{typeID, activityID, material_typeID, quantity}]
- *
- * @return {array}
+ * @constant industryActivityMaterials
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivityMaterials", the list is filtered for only published entries.
+ * @example [...{typeID, activityID, materialtypeID, quantity}]
  */
-const industryActivityMaterials = getData_({
+const industryActivityMaterials = getData({
 	tableName: 'industryActivityMaterials'
 })
 	.filter(entry => {
@@ -217,45 +254,38 @@ const industryActivityMaterials = getData_({
 	.sort((a, b) => {
 		return a.typeID - b.typeID;
 	});
-
 /**
- * @name industryActivityProducts
- * @description Executes immediately and returns an array of objects
- * @example [...{typeID, type_name, product_typeID, quantity}]
- *
- * @return {array}
+ * @const industryActivityProducts
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivityProducts", the list is filtered for only published entries and only certain attributes are mapped.
+ * @example [...{typeID, typeName, productTypeID, quantity}]
  */
-const industryActivityProducts = (() => {
-	return getData_({
-		tableName: 'industryActivityProducts'
+const industryActivityProducts = getData({
+	tableName: 'industryActivityProducts'
+})
+	.filter(entry => {
+		return (
+			publishedTypeIDs.includes(entry.typeID) &&
+			publishedTypeIDs.includes(entry.productTypeID) &&
+			(entry.activityID == 1 || entry.activityID == 9)
+		);
 	})
-		.filter(entry => {
-			return publishedTypeIDs.includes(entry.typeID);
-		})
-		.filter(entry => {
-			return entry.activityID == 1 || entry.activityID == 9;
-		})
-		.map(entry => {
-			return {
-				typeID: entry.typeID,
-				activityID: entry.activityID,
-				productTypeID: entry.productTypeID,
-				quantity: entry.quantity
-			};
-		})
-		.sort((a, b) => {
-			return a.typeID - b.typeID;
-		});
-})();
-
+	.map(entry => {
+		return {
+			typeID: entry.typeID,
+			activityID: entry.activityID,
+			productTypeID: entry.productTypeID,
+			quantity: entry.quantity
+		};
+	})
+	.sort((a, b) => {
+		return a.typeID - b.typeID;
+	});
 /**
- * @name industryActivity
- * @description Executes immediately and returns an array of objects
+ * @constant industryActivity
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivities."
  * @example [...{typeID, activityID, time}]
- *
- * @return {array}
  */
-const industryActivity = getData_({
+const industryActivity = getData({
 	tableName: 'industryActivity'
 })
 	.filter(entry => {
@@ -264,15 +294,12 @@ const industryActivity = getData_({
 	.sort((a, b) => {
 		return a.typeID - b.typeID;
 	});
-
 /**
- * @name industryActivityProbabilities
- * @description Executes immediately and returns an array of objects
- * @example [...{typeID, activityID, material_typeID, quantity}]
- *
- * @return {array}
+ * @constant industryActivityProbabilities
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivityProbabilities."
+ * @example [...{typeID, activityID, materialTypeID, quantity}]
  */
-const industryActivityProbabilities = getData_({
+const industryActivityProbabilities = getData({
 	tableName: `industryActivityProbabilities`
 })
 	.filter(entry => {
@@ -281,15 +308,12 @@ const industryActivityProbabilities = getData_({
 	.sort((a, b) => {
 		return a.typeID - b.typeID;
 	});
-
 /**
- * @name industryActivitySkills
- * @description Executes immediately and returns an array of objects
- * @example [...{typeID, activityID, material_typeID, quantity}]
- *
- * @return {array}
+ * @constant industryActivitySkills
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivitySkills."
+ * @example [...{typeID, activityID, materialTypeID, quantity}]
  */
-const industryActivitySkills = getData_({
+const industryActivitySkills = getData({
 	tableName: `industryActivitySkills`
 })
 	.filter(entry => {
@@ -298,99 +322,118 @@ const industryActivitySkills = getData_({
 	.sort((a, b) => {
 		return a.typeID - b.typeID;
 	});
-
 /**
- * @name typeName_
- * @description Returns a type name for a given Type ID
- *
+ * @function typeName
+ * @description Returns a item type name for a given item type ID
+ * @param {(string|number)} typeID - the ID number for a a particular item type
  * @return {string}
  */
-function typeName_(typeID) {
+function typeName(typeID) {
 	// search in invTypes...
 	const type = invTypes.find(element => {
 		// until a match is found...
 		return element.typeID == typeID;
 	});
-	// return "type_name" from entry if it is defined...
+	// return "typename" from entry if it is defined...
 	return typeof type != 'undefined'
 		? type.typeName
-		: new Error(`typeName from typeID ${typeID} is ${typeof type}`);
+		: new Error(
+				`typeName({${typeof typeID}} ${typeID}) cannot be: ${typeof type}.typeName`
+		  );
 }
-
 /**
- * @name groupName_
- * @description Returns a group name for a given group ID
- *
+ * @function groupID
+ * @description Returns a group ID for a given item type ID
+ * @param {(string|number)} typeID - the ID number for a particular item type
  * @return {string}
  */
-function groupID_(typeID) {
+function groupID(typeID) {
 	// search in invTypes...
 	const group = invTypes.find(element => {
 		// until a match is found...
 		return element.typeID == typeID;
 	});
-	// return "type_name" from entry if it is defined...
+	// return "typename" from entry if it is defined...
 	return typeof group != 'undefined'
 		? group.groupID
-		: new Error(`groupID from typeID ${typeID} is ${typeof group}`);
+		: new Error(
+				`groupID({${typeof typeID}} ${typeID}) cannot be: ${typeof group}.groupID`
+		  );
 }
-
 /**
- * @name groupName_
- * @description Returns a group name for a given group ID
- *
+ * @function groupName
+ * @description Returns a group name for a given item group ID
+ * @param {(string|number)} groupID - the ID number for a a particular item group
  * @return {string}
  */
-function groupName_(groupID) {
+function groupName(groupID) {
 	// search in invGroups...
 	const group = invGroups.find(element => {
 		// until a match is found...
 		return element.groupID == groupID;
 	});
-	// return "type_name" from entry if it is defined...
+	// return "typename" from entry if it is defined...
 	return typeof group != 'undefined'
 		? group.groupName
-		: new Error(`groupName from groupID ${groupID} is ${typeof group}`);
+		: new Error(
+				`groupName({${typeof groupID}} ${groupID}) cannot be: ${typeof group}.groupName`
+		  );
 }
-function marketGroupID_(typeID) {
+/**
+ * @function marketGroupID
+ * @description Returns a market group ID for a given item type ID
+ * @param {(string|number)} typeID - the ID number for a particular item type
+ * @return {string}
+ */
+function marketGroupID(typeID) {
 	const marketGroup = invTypes.find(element => {
 		return element.typeID == typeID;
 	});
 	return typeof marketGroup != `undefined`
 		? marketGroup.marketGroupID
 		: new Error(
-				`marketGroupID from typeID ${typeID} is ${typeof marketgroup}.`
+				`marketGroupID({${typeof typeID}} ${typeID}) cannot be: ${typeof marketGroup}.marketGroupID`
 		  );
 }
-function marketGroupName_(marketGroupID) {
+/**
+ * @function marketGroupName
+ * @description Returns a market group name for a given item market group ID
+ * @param {(string|number)} marketGroupID - the ID number for a particular item market group
+ * @return {string}
+ */
+function marketGroupName(marketGroupID) {
 	const marketGroup = invMarketGroups.find(element => {
 		return element.marketGroupID == marketGroupID;
 	});
 	return typeof marketGroup != `undefined`
 		? marketGroup.marketGroupName
 		: new Error(
-				`marketGroupName from marketGroupID ${marketGroupID} is ${typeof marketGroup}.`
+				`marketGroupName({${typeof marketGroupID}} ${marketGroupID}) cannot be: ${typeof marketGroup}.groupID`
 		  );
 }
 /**
- *
+ * @function categoryID
+ * @description Returns a category ID for a given group ID
+ * @param {(string|number)} groupID - the ID number for a particular item group
+ * @return {string}
  */
-function categoryID_(groupID) {
+function categoryID(groupID) {
 	const category = invGroups.find(element => {
 		return element.groupID == groupID;
 	});
 	return typeof category != `undefined`
 		? category.categoryID
-		: new Error(`categoryID from groupID ${groupID} is ${typeof category}`);
+		: new Error(
+				`categoryID({${typeof groupID}} ${groupID}) cannot be: ${typeof category}.categoryID`
+		  );
 }
-
 /**
- * @name categoryName_
+ * @function categoryName
  * @description Returns a category name for a given category ID
- *
+ * @param {(string|number)} categoryID - the ID number for a particular item category
  * @return {string}
  */
-function categoryName_(categoryID) {
+function categoryName(categoryID) {
 	// search in invGroups...
 	const category = invCategories.find(element => {
 		// until a match is found...
@@ -400,121 +443,121 @@ function categoryName_(categoryID) {
 	return typeof category != 'undefined'
 		? category.categoryName
 		: new Error(
-				`categoryName from categoryID ${categoryID} is ${typeof category}`
+				`categoryName({${typeof categoryID}} ${categoryID}) cannot be: ${typeof category}.categoryName`
 		  );
 }
-
 /**
- * @name activityName_
+ * @function activityName
  * @description Returns an activity name for a given activity ID
- *
+ * @param {(string|number)} activityID - the ID number for a particular industry activity
  * @return {string}
  */
-function activityName_(activityID) {
+function activityName(activityID) {
 	// search in invTypes...
 	const activity = industryActivities.find(element => {
 		// until a match is found...
 		return element.activityID == activityID;
 	});
-	// return "type_name" from entry if it is defined...
+	// return "typename" from entry if it is defined...
 	return typeof activity != 'undefined'
 		? activity.activityName
 		: new Error(
-				`activityName from activityID ${activityID} is ${typeof activity}`
+				`activityName({${typeof activityID}} ${activityID}) cannot be: ${typeof activity}.activityName`
 		  );
 }
-
 /**
- * @name industryActivityMaterials
- * @description Executes immediately and returns a list of all material Type IDs
- *
+ * @function blueprints
+ * @description Compiles all the data into an array of objects.
  * @return {array}
  */
-const blueprints = industryActivityProducts
-	.reduce(
-		// call the "reduce" array method to remove duplicates...
-		(unique, item) =>
-			// if "item" is already listed in "unique", then "unique" is left unchanged. Otherwise, add "item" to "unique"...
-			unique.includes(item.productTypeID)
-				? unique
-				: [...unique, item.productTypeID],
-		// inital value for unique
-		[]
-	)
-	.map(productTypeID => {
-		const {
-			activityID,
-			typeID: blueprintTypeID,
-			quantity
-		} = industryActivityProducts.find(entry => {
-			return entry.productTypeID == productTypeID;
+function blueprints() {
+	return industryActivityProducts
+		.reduce(
+			// call the "reduce" array method to remove duplicates...
+			(unique, item) =>
+				// if "item" is already listed in "unique", then "unique" is left unchanged. Otherwise, add "item" to "unique"...
+				unique.includes(item.productTypeID)
+					? unique
+					: [...unique, item.productTypeID],
+			// inital value for unique
+			[]
+		)
+		.map(productTypeID => {
+			const {
+				activityID,
+				typeID: blueprintTypeID,
+				quantity
+			} = industryActivityProducts.find(entry => {
+				return entry.productTypeID == productTypeID;
+			});
+			const materials = industryActivityMaterials
+				.filter(entry => {
+					return (
+						entry.typeID == blueprintTypeID && entry.activityID == activityID
+					);
+				})
+				.map(entry => {
+					return {
+						name: typeName(entry.materialTypeID),
+						quantity: entry.quantity,
+						group: groupName(groupID(entry.materialTypeID)),
+						marketGroup: marketGroupName(marketGroupID(entry.materialTypeID)),
+						category: categoryName(categoryID(groupID(entry.materialTypeID))),
+						imgUrl: `https://images.evetech.net/types/${entry.materialTypeID}/icon`
+					};
+				});
+			const blueprint = {
+				name: typeName(blueprintTypeID),
+				group: groupName(groupID(blueprintTypeID)),
+				marketGroup: marketGroupName(marketGroupID(blueprintTypeID)),
+				category: categoryName(categoryID(groupID(blueprintTypeID))),
+				imgUrl: `https://images.evetech.net/types/${blueprintTypeID}/bp`
+			};
+			const product = {
+				name: typeName(productTypeID),
+				group: groupName(groupID(productTypeID)),
+				marketGroup: marketGroupName(marketGroupID(productTypeID)),
+				category: categoryName(categoryID(groupID(productTypeID))),
+				imgUrl: `https://images.evetech.net/types/${productTypeID}/icon`
+			};
+			const activityName = activityName(activityID);
+			const time = industryActivity.find(activity => {
+				return (
+					activity.typeID == blueprintTypeID &&
+					activity.activityID == activityID
+				);
+			}).time;
+			const skills = industryActivitySkills
+				.filter(activity => {
+					return (
+						activity.typeID == blueprintTypeID &&
+						activity.activityID == activityID
+					);
+				})
+				.map(activity => {
+					return {
+						skillName: typeName(activity.skillID),
+						level: activity.level
+					};
+				});
+			const probability =
+				typeof industryActivityProbabilities.find(activity => {
+					return (
+						activity.typeID == blueprintTypeID &&
+						activity.activityID == activityID
+					);
+				}) != 'undefined'
+					? probabilities.probability
+					: 1;
+			return {
+				blueprint,
+				product,
+				quantity,
+				activityName,
+				materials,
+				time,
+				probability,
+				skills
+			};
 		});
-		const materials = industryActivityMaterials
-			.filter(entry => {
-				return (
-					entry.typeID == blueprintTypeID && entry.activityID == activityID
-				);
-			})
-			.map(entry => {
-				return {
-					name: typeName_(entry.materialTypeID),
-					quantity: entry.quantity,
-					group: groupName_(groupID_(entry.materialTypeID)),
-					marketGroup: marketGroupName_(marketGroupID_(entry.materialTypeID)),
-					category: categoryName_(categoryID_(groupID_(entry.materialTypeID))),
-					imgUrl: `https://images.evetech.net/types/${entry.materialTypeID}/icon`
-				};
-			});
-		const blueprint = {
-			name: typeName_(blueprintTypeID),
-			group: groupName_(groupID_(blueprintTypeID)),
-			marketGroup: marketGroupName_(marketGroupID_(blueprintTypeID)),
-			category: categoryName_(categoryID_(groupID_(blueprintTypeID))),
-			imgUrl: `https://images.evetech.net/types/${blueprintTypeID}/bp`
-		};
-		const product = {
-			name: typeName_(productTypeID),
-			group: groupName_(groupID_(productTypeID)),
-			marketGroup: marketGroupName_(marketGroupID_(productTypeID)),
-			category: categoryName_(categoryID_(groupID_(productTypeID))),
-			imgUrl: `https://images.evetech.net/types/${productTypeID}/icon`
-		};
-		const activityName = activityName_(activityID);
-		const time = industryActivity.find(activity => {
-			return (
-				activity.typeID == blueprintTypeID && activity.activityID == activityID
-			);
-		}).time;
-		const skills = industryActivitySkills
-			.filter(activity => {
-				return (
-					activity.typeID == blueprintTypeID &&
-					activity.activityID == activityID
-				);
-			})
-			.map(activity => {
-				return {
-					skillName: typeName_(activity.skillID),
-					level: activity.level
-				};
-			});
-		const probability =
-			typeof industryActivityProbabilities.find(activity => {
-				return (
-					activity.typeID == blueprintTypeID &&
-					activity.activityID == activityID
-				);
-			}) != 'undefined'
-				? probabilities.probability
-				: 1;
-		return {
-			blueprint,
-			product,
-			quantity,
-			activityName,
-			materials,
-			time,
-			probability,
-			skills
-		};
-	});
+}
