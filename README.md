@@ -26,6 +26,7 @@
 ### What follows is the industry data for building a Bantam
 
 ```json
+
 [
 	{
 		"blueprint": {
