@@ -1,57 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
-    <meta charset="utf-8">
-    <title>buildIndustryObject.js - Documentation</title>
-    
-    
-    <script src="scripts/prettify/prettify.js"></script>
-    <script src="scripts/prettify/lang-css.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
-    <script src="scripts/nav.js" defer></script>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta charset="utf-8">
+  <title>buildIndustryObject.js - Documentation</title>
+
+  <script src="scripts/prettify/prettify.js"></script>
+  <script src="scripts/prettify/lang-css.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+  <script src="scripts/nav.js" defer></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
-<input type="checkbox" id="nav-trigger" class="nav-trigger" />
-<label for="nav-trigger" class="navicon-button x">
-  <div class="navicon"></div>
-</label>
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
 
-<label for="nav-trigger" class="overlay"></label>
+  <label for="nav-trigger" class="overlay"></label>
 
-<nav >
-    
-    
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activityName">activityName</a></li><li><a href="global.html#blueprints">blueprints</a></li><li><a href="global.html#cacheUrlFetchApp">cacheUrlFetchApp</a></li><li><a href="global.html#categoryID">categoryID</a></li><li><a href="global.html#categoryName">categoryName</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#groupID">groupID</a></li><li><a href="global.html#groupName">groupName</a></li><li><a href="global.html#industryActivities">industryActivities</a></li><li><a href="global.html#industryActivity">industryActivity</a></li><li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li><li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li><li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li><li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li><li><a href="global.html#invCategories">invCategories</a></li><li><a href="global.html#invGroups">invGroups</a></li><li><a href="global.html#invMarketGroups">invMarketGroups</a></li><li><a href="global.html#invTypes">invTypes</a></li><li><a href="global.html#marketGroupID">marketGroupID</a></li><li><a href="global.html#marketGroupName">marketGroupName</a></li><li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li><li><a href="global.html#tables">tables</a></li><li><a href="global.html#typeName">typeName</a></li></ul>
-    
-</nav>
+  <nav>
 
-<div id="main">
-    
+    <h2><a href="index.html">Home</a></h2>
+    <h3>Global</h3>
+    <ul>
+      <li><a href="global.html#activityName">activityName</a></li>
+      <li><a href="global.html#blueprints">blueprints</a></li>
+      <li><a href="global.html#cacheUrlFetchApp">cacheUrlFetchApp</a></li>
+      <li><a href="global.html#categoryID">categoryID</a></li>
+      <li><a href="global.html#categoryName">categoryName</a></li>
+      <li><a href="global.html#getData">getData</a></li>
+      <li><a href="global.html#groupID">groupID</a></li>
+      <li><a href="global.html#groupName">groupName</a></li>
+      <li><a href="global.html#industryActivities">industryActivities</a></li>
+      <li><a href="global.html#industryActivity">industryActivity</a></li>
+      <li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li>
+      <li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li>
+      <li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li>
+      <li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li>
+      <li><a href="global.html#invCategories">invCategories</a></li>
+      <li><a href="global.html#invGroups">invGroups</a></li>
+      <li><a href="global.html#invMarketGroups">invMarketGroups</a></li>
+      <li><a href="global.html#invTypes">invTypes</a></li>
+      <li><a href="global.html#marketGroupID">marketGroupID</a></li>
+      <li><a href="global.html#marketGroupName">marketGroupName</a></li>
+      <li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li>
+      <li><a href="global.html#tables">tables</a></li>
+      <li><a href="global.html#typeName">typeName</a></li>
+    </ul>
+
+  </nav>
+
+  <div id="main">
+
     <h1 class="page-title">buildIndustryObject.js</h1>
-    
-
-    
-
-
-
-    
     <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/**
+      <article>
+        <pre class="prettyprint source linenums"><code>
+/**
  * @file buildIndustryObject.js
  * @version 2.0.0
  * @author PhobiaCide
  * @copyright 2022 Andrew Amason
  */
-
 /**
  * @function cacheUrlFetchApp
  * @description Checks if the return from a Url fetch is in cache. If so, retrieves it from cache instead of making another network request. If not, makes a new request and adds it to the cache.
@@ -608,27 +625,21 @@ function blueprints() {
 			};
 		});
 }</code></pre>
-        </article>
+      </article>
     </section>
+  </div>
 
+  <br class="clear">
 
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Thu Dec 15 2022 18:34:50
+    GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+  </footer>
 
-
-    
-    
-</div>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Thu Dec 15 2022 18:34:50 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
-</footer>
-
-<script>prettyPrint();</script>
-<script src="scripts/polyfill.js"></script>
-<script src="scripts/linenumber.js"></script>
-
-
+  <script>prettyPrint();</script>
+  <script src="scripts/polyfill.js"></script>
+  <script src="scripts/linenumber.js"></script>
 
 </body>
+
 </html>
