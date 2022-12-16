@@ -1,22 +1,22 @@
 <!-- @format -->
 
-# 🎇 buildIndustryObject.js 👀
+# 🎇 buildIndustryObject.js
 
 ## 🏷 Summary
 
-### 👨‍🚀 A Google Apps Script that gathers various data from the 🌌 Eve Online Static Data Export and compiles them into a .JSON object to be used for calculating the material and time costs of running a given job.
+### 👨‍🚀 A Google Apps Script that gathers various data from the 🌌 Eve Online Static Data Export and compiles them into a .JSON object to be used for calculating the material and time costs of running a given job. 🚀
 
 ---
 
 ## 📄 Documentation
 
-### 🚀 [Click here 🔗](https://phobiacide.github.io/buildIndustryObject/) to view the docs!
+### [Click here 🔗](https://phobiacide.github.io/buildIndustryObject/) to view the docs!
 
 ---
 
 ## 🪐 Sample Output
 
-### ⚙️ What follows is the industry data for building a Bantam
+### What follows is the industry data for building a Bantam
 
 ```json
 [
