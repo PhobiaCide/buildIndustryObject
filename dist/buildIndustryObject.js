@@ -1,6 +1,7 @@
 /**
  * @file buildIndustryObject.js
  * @version 2.0.0
+ * @date 31 December, 2022
  * @author PhobiaCide
  * @copyright 2022 Andrew Amason
  */
