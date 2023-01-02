@@ -62,13 +62,13 @@ function buildIndyObject() {
    * @constant
    * @alias industryActivities
    * @description An array of objects, each of which represents a different industry
-	 * activity and corresponding ID
+   * activity and corresponding ID
    * @property {number} activityID -
    * @property {string} activityName -
    */
-	// TODO: Write summary for industryActivities
-	// TODO: Write description for industryActivities.activityID property
-	// TODO: Write description for industryActivities.activityName property
+  // TODO: Write summary for industryActivities
+  // TODO: Write description for industryActivities.activityID property
+  // TODO: Write description for industryActivities.activityName property
 
   const industryActivities = Object.freeze([
     Object.freeze({ activityID: 1, activityName: 'Manufacturing' }),
@@ -83,7 +83,7 @@ function buildIndyObject() {
    * @constant
    * @alias staticData
    * @description An array of objects, each of which contains a name and address to an
-	 * Eve Online Static Data Export .JSON conversion
+   * Eve Online Static Data Export .JSON conversion
    */
 	// TODO: Write summary for staticData
   const staticData = Object.freeze(
@@ -94,10 +94,10 @@ function buildIndyObject() {
    * @constant
    * @alias invMarketGroups
    * @description Compiles an array of objects, each of which represents a different
-	 * item. Taken from the SDE table, "invMarketGroups."
+   * item. Taken from the SDE table, "invMarketGroups."
    * @example [{ marketGroupID, marketGroupName, description }, ...]
    * @property {(number|string)} marketGroupID - Identification number for a particular
-	 * market group
+   * market group
    * @property {string} marketGroupName - Name of a particular market group
    * @property {string} description - Description of a particular market group
    */
@@ -120,11 +120,11 @@ function buildIndyObject() {
    * @constant
    * @alias invCategories
    * @description Compiles an array of objects, each of which represents a different item
-	 * category, the parent of group. Taken from the SDE table, "invCategories", the list
-	 * is filtered for only published entries.
+   * category, the parent of group. Taken from the SDE table, "invCategories", the list
+   * is filtered for only published entries.
    * @example [{ categoryID, categoryName }, ...]
    * @property {(number|string)} categoryID - Identification number for the group to
-	 * which a particular type belongs
+   * which a particular type belongs
    * @property {string} categoryName - Name of a particular group
    */
 	// TODO: Write summary for invCategories
@@ -153,14 +153,14 @@ function buildIndyObject() {
    * @alias invGroups
    * @summary A list of group ID numbers and corresponding information
    * @description Compiles an array of objects, each of which represents a different item
-	 * group, the parent of type. Taken from the SDE table, "invGroups", the list is
-	 * filtered for only published entries.
+   * group, the parent of type. Taken from the SDE table, "invGroups", the list is
+   * filtered for only published entries.
    * @example [{ groupID, groupName, categoryID }, ...]
    * @property {(number|string)} groupID - Identification number for the group to which a
-	 * particular type belongs
+   * particular type belongs
    * @property {string} groupName - Name of a particular group
    * @property {(number|string)} categoryID - Identification number for a category to
-	 * which a particular group belongs
+   * which a particular group belongs
    */
   const invGroups = Object.freeze(
     getData(`invGroups`)
@@ -189,17 +189,17 @@ function buildIndyObject() {
    * @alias invTypes
    * @summary	A list of type IDs and corresponding information
    * @description Compiles an array of objects, each of which represents a different
-	 * item. Taken from the SDE table, "invTypes", the list is filtered for only published
-	 * entries and only certain attributes are mapped.
+   * item. Taken from the SDE table, "invTypes", the list is filtered for only published
+   * entries and only certain attributes are mapped.
    * @example	[{ typeID, typeName, description, groupID, marketGroupID }, ...]
    * @property {(string|number)} typeID - Identification number for a particular type
    * @property {string} typeName - Name of a particular type
    * @property {string} description - This is displayed in-game in the show info panel
-	 * on the "description" tab
+   * on the "description" tab
    * @property {(string|number)} groupID - Identification number for the group to which a
-	 * particular type belongs
+   * particular type belongs
    * @property {(string|number)} marketGroupID - Identification number for the market
-	 * group to which a particular type belongs
+   * group to which a particular type belongs
    */
   const invTypes = Object.freeze(
     getData(`invTypes`)
@@ -229,8 +229,8 @@ function buildIndyObject() {
    * @constant
    * @alias industryActivityMaterials
    * @description Returns an array of objects, each of which represents a different
-	 * blueprint. Taken from the SDE table, "industryActivityMaterials", the list is
-	 * filtered for only published entries.
+   * blueprint. Taken from the SDE table, "industryActivityMaterials", the list is
+   * filtered for only published entries.
    * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
    */
 	// TODO: Write summary for industryActivityMaterials
@@ -251,8 +251,8 @@ function buildIndyObject() {
    * @constant
    * @alias industryActivityProducts
    * @description Returns an array of objects, each of which represents a different
-	 * blueprint. Taken from the SDE table, "industryActivityProducts", the list is
-	 * filtered for only published entries and only certain attributes are mapped.
+   * blueprint. Taken from the SDE table, "industryActivityProducts", the list is
+   * filtered for only published entries and only certain attributes are mapped.
    * @example [{ typeID, typeName, productTypeID, quantity }, ...]
    */
 	// TODO: Write Summary for industryActivityProducts
@@ -289,7 +289,7 @@ function buildIndyObject() {
    * @constant
    * @alias industryActivity
    * @description Returns an array of objects, each of which represents a different
-	 * item. Taken from the SDE table, "industryActivities."
+   * item. Taken from the SDE table, "industryActivities."
    * @example [{ typeID, activityID, time }, ...]
    */
 	// TODO: Write summary for industryActivity
@@ -310,7 +310,7 @@ function buildIndyObject() {
    * @constant
    * @alias industryActivityProbabilities
    * @description Returns an array of objects, each of which represents a different
-	 * blueprint and activity. Taken from the SDE table, "industryActivityProbabilities."
+   * blueprint and activity. Taken from the SDE table, "industryActivityProbabilities."
    * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
    */
 	// TODO: Write summary for industryActivityProbabilities
@@ -332,7 +332,7 @@ function buildIndyObject() {
    * @alias industryActivitySkills
    * @summary A list of specific activities and the skills required
    * @description Compiles an array of objects, each of which represents a different
-	 * blueprint. Taken from the SDE table, "industryActivitySkills."
+   * blueprint. Taken from the SDE table, "industryActivitySkills."
    * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
    */
   const industryActivitySkills = Object.freeze(
@@ -353,7 +353,7 @@ function buildIndyObject() {
    * @alias publishedTypeIDs
    * @summary A list of all the published type IDs
    * @description Takes invTypes and takes the typeID from each entry and returns them
-	 * all in an array
+   * all in an array
    */
   const publishedTypeIDs = invTypes.map(entry => entry.typeID);
 
@@ -423,7 +423,7 @@ function buildIndyObject() {
    * @alias marketGroupID()
    * @summary Returns marketGroupID for a given typeID
    * @description Looks up a type by type ID in invTypes and returns the corresponding
-	 * market group ID
+   * market group ID
    * @param {(string|number)} typeID - the ID number for a particular item type
    * @return {string} - The ID for the market group to which the given type belongs
    */
@@ -441,11 +441,11 @@ function buildIndyObject() {
    * @alias marketGroupName()
    * @summary Returns marketGroupName for a given marketGroupID
    * @description Looks up a market group by market group ID and returns the
-	 * corresponding market group name
+   * corresponding market group name
    * @param {(string|number)} marketGroupID - the ID number for a particular item market
-	 * group
+   * group
    * @return {string} - The name of the market group to which the given market group ID
-	 * belongs
+   * belongs
    */
   function marketGroupName(marketGroupID) {
     const marketGroup = invMarketGroups.find(element => {
@@ -479,7 +479,7 @@ function buildIndyObject() {
    * @alias categoryName()
    * @summary Returns categoryName for given categoryID
    * @description Looks up a category by category ID and returns the corresponding
-	 * category name
+   * category name
    * @param {(string|number)} categoryID - the ID number for a particular item category
    * @return {string} -
    */
@@ -501,9 +501,9 @@ function buildIndyObject() {
    * @alias activityName()
    * @summary Returns activityName for given activityID
    * @description Looks up a activity by activity ID and returns the corresponding
-	 * activity name
+   * activity name
    * @param {(string|number)} activityID - the ID number for a particular industry
-	 * activity
+   * activity
    * @return {string} - Name of the activity represented by the given activity ID
    */
   function activityName(activityID) {
