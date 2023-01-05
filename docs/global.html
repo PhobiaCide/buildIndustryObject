@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activityName()">activityName()</a></li><li><a href="global.html#blueprints()">blueprints()</a></li><li><a href="global.html#categoryID()">categoryID()</a></li><li><a href="global.html#categoryName()">categoryName()</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#groupID()">groupID()</a></li><li><a href="global.html#groupName()">groupName()</a></li><li><a href="global.html#industryActivities">industryActivities</a></li><li><a href="global.html#industryActivity">industryActivity</a></li><li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li><li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li><li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li><li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li><li><a href="global.html#invCategories">invCategories</a></li><li><a href="global.html#invGroups">invGroups</a></li><li><a href="global.html#invMarketGroups">invMarketGroups</a></li><li><a href="global.html#invTypes">invTypes</a></li><li><a href="global.html#marketGroupID()">marketGroupID()</a></li><li><a href="global.html#marketGroupName()">marketGroupName()</a></li><li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li><li><a href="global.html#staticData">staticData</a></li><li><a href="global.html#typeName()">typeName()</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activityName">activityName</a></li><li><a href="global.html#blueprints">blueprints</a></li><li><a href="global.html#categoryID">categoryID</a></li><li><a href="global.html#categoryName">categoryName</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#groupID">groupID</a></li><li><a href="global.html#groupName">groupName</a></li><li><a href="global.html#industryActivities">industryActivities</a></li><li><a href="global.html#industryActivity">industryActivity</a></li><li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li><li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li><li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li><li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li><li><a href="global.html#invCategories">invCategories</a></li><li><a href="global.html#invGroups">invGroups</a></li><li><a href="global.html#invMarketGroups">invMarketGroups</a></li><li><a href="global.html#invTypes">invTypes</a></li><li><a href="global.html#marketGroupID">marketGroupID</a></li><li><a href="global.html#marketGroupName">marketGroupName</a></li><li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li><li><a href="global.html#staticData">staticData</a></li><li><a href="global.html#typeName">typeName</a></li></ul>
     
 </nav>
 
@@ -128,8 +128,7 @@
 <h4 class="name" id="industryActivities"><span class="type-signature type-signature-constant">(constant) </span>industryActivities<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>An array of objects, each of which represents a different industry
-activity and corresponding ID</p>.</p>
+<p class="summary"><p>An array of objects, each of which represents a different industry activity width:  corresponding ID</p></p>
 
 
 
@@ -137,14 +136,13 @@ activity and corresponding ID</p>.</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>An array of objects, each of which represents a different industry
-activity and corresponding ID</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>industryActivities is a small collection of data structured as an array of objects, each of which represents a different industrial activity - properties are &quot;activityID&quot; and &quot;activityName&quot;</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line72">line 72</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line30">line 30</a>
     </li></ul></dd>
     
 
@@ -224,9 +222,7 @@ activity and corresponding ID</p></li></ul></dd>
 
             
 
-            <td class="description last"><ul>
-<li></li>
-</ul></td>
+            <td class="description last"><p>The ID number of a particular industry activity</p></td>
         </tr>
 
     
@@ -250,9 +246,7 @@ activity and corresponding ID</p></li></ul></dd>
 
             
 
-            <td class="description last"><ul>
-<li></li>
-</ul></td>
+            <td class="description last"><p>The name of a particular industry activity</p></td>
         </tr>
 
     
@@ -265,8 +259,7 @@ activity and corresponding ID</p></li></ul></dd>
 
 
 <div class="description usertext">
-    <p>An array of objects, each of which represents a different industry
-activity and corresponding ID</p>
+    <p>industryActivities is a small collection of data structured as an array of objects, each of which represents a different industrial activity - properties are &quot;activityID&quot; and &quot;activityName&quot;</p>
 </div>
 
 
@@ -281,8 +274,7 @@ activity and corresponding ID</p>
 <h4 class="name" id="industryActivity"><span class="type-signature type-signature-constant">(constant) </span>industryActivity<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Returns an array of objects, each of which represents a different
-item.</p></p>
+<p class="summary"><p>Lists time cost for each blueprint and activity combination</p></p>
 
 
 
@@ -290,14 +282,13 @@ item.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;industryActivities.&quot;</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different item. Taken from the SDE table, &quot;industryActivities.&quot;</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line295">line 295</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line261">line 261</a>
     </li></ul></dd>
     
 
@@ -337,8 +328,7 @@ item. Taken from the SDE table, &quot;industryActivities.&quot;</p></li></ul></d
 
 
 <div class="description usertext">
-    <p>Returns an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;industryActivities.&quot;</p>
+    <p>Returns an array of objects, each of which represents a different item. Taken from the SDE table, &quot;industryActivities.&quot;</p>
 </div>
 
 
@@ -358,8 +348,7 @@ item. Taken from the SDE table, &quot;industryActivities.&quot;</p>
 <h4 class="name" id="industryActivityMaterials"><span class="type-signature type-signature-constant">(constant) </span>industryActivityMaterials<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Returns an array of objects, each of which represents a different
-blueprint.</p></p>
+<p class="summary"><p>Lists all materials for a particular blueprint and activity</p></p>
 
 
 
@@ -367,15 +356,13 @@ blueprint.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivityMaterials&quot;, the list is
-filtered for only published entries.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivityMaterials&quot;, the list is filtered for only published entries.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line236">line 236</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line205">line 205</a>
     </li></ul></dd>
     
 
@@ -415,9 +402,7 @@ filtered for only published entries.</p></li></ul></dd>
 
 
 <div class="description usertext">
-    <p>Returns an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivityMaterials&quot;, the list is
-filtered for only published entries.</p>
+    <p>Returns an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivityMaterials&quot;, the list is filtered for only published entries.</p>
 </div>
 
 
@@ -437,8 +422,7 @@ filtered for only published entries.</p>
 <h4 class="name" id="industryActivityProbabilities"><span class="type-signature type-signature-constant">(constant) </span>industryActivityProbabilities<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Returns an array of objects, each of which represents a different
-blueprint and activity.</p></p>
+<p class="summary"><p>Lists success chance for each blueprint and activity combination</p></p>
 
 
 
@@ -446,14 +430,13 @@ blueprint and activity.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different
-blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabilities.&quot;</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabilities.&quot;</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line316">line 316</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line281">line 281</a>
     </li></ul></dd>
     
 
@@ -493,8 +476,7 @@ blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabil
 
 
 <div class="description usertext">
-    <p>Returns an array of objects, each of which represents a different
-blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabilities.&quot;</p>
+    <p>Returns an array of objects, each of which represents a different blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabilities.&quot;</p>
 </div>
 
 
@@ -514,8 +496,7 @@ blueprint and activity. Taken from the SDE table, &quot;industryActivityProbabil
 <h4 class="name" id="industryActivityProducts"><span class="type-signature type-signature-constant">(constant) </span>industryActivityProducts<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Returns an array of objects, each of which represents a different
-blueprint.</p></p>
+<p class="summary"><p>Lists product data for a each blueprint and activity combination</p></p>
 
 
 
@@ -523,15 +504,13 @@ blueprint.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivityProducts&quot;, the list is
-filtered for only published entries and only certain attributes are mapped.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Returns an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivityProducts&quot;, the list is filtered for only published entries and only certain attributes are mapped.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line258">line 258</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line225">line 225</a>
     </li></ul></dd>
     
 
@@ -571,9 +550,7 @@ filtered for only published entries and only certain attributes are mapped.</p><
 
 
 <div class="description usertext">
-    <p>Returns an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivityProducts&quot;, the list is
-filtered for only published entries and only certain attributes are mapped.</p>
+    <p>Returns an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivityProducts&quot;, the list is filtered for only published entries and only certain attributes are mapped.</p>
 </div>
 
 
@@ -601,14 +578,13 @@ filtered for only published entries and only certain attributes are mapped.</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line337">line 337</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line301">line 301</a>
     </li></ul></dd>
     
 
@@ -648,8 +624,7 @@ blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p></li
 
 
 <div class="description usertext">
-    <p>Compiles an array of objects, each of which represents a different
-blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p>
+    <p>Compiles an array of objects, each of which represents a different blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p>
 </div>
 
 
@@ -669,8 +644,7 @@ blueprint. Taken from the SDE table, &quot;industryActivitySkills.&quot;</p>
 <h4 class="name" id="invCategories"><span class="type-signature type-signature-constant">(constant) </span>invCategories<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Compiles an array of objects, each of which represents a different item
-category, the parent of group.</p></p>
+<p class="summary"><p>Lists Category lookup data</p></p>
 
 
 
@@ -678,15 +652,13 @@ category, the parent of group.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item
-category, the parent of group. Taken from the SDE table, &quot;invCategories&quot;, the list
-is filtered for only published entries.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item category, the parent of group. Taken from the SDE table, &quot;invCategories&quot;, the list is filtered for only published entries.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line130">line 130</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line102">line 102</a>
     </li></ul></dd>
     
 
@@ -769,8 +741,7 @@ is filtered for only published entries.</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>Identification number for the group to
-which a particular type belongs</p></td>
+            <td class="description last"><p>Identification number for the group to which a particular type belongs</p></td>
         </tr>
 
     
@@ -807,9 +778,7 @@ which a particular type belongs</p></td>
 
 
 <div class="description usertext">
-    <p>Compiles an array of objects, each of which represents a different item
-category, the parent of group. Taken from the SDE table, &quot;invCategories&quot;, the list
-is filtered for only published entries.</p>
+    <p>Compiles an array of objects, each of which represents a different item category, the parent of group. Taken from the SDE table, &quot;invCategories&quot;, the list is filtered for only published entries.</p>
 </div>
 
 
@@ -829,7 +798,7 @@ is filtered for only published entries.</p>
 <h4 class="name" id="invGroups"><span class="type-signature type-signature-constant">(constant) </span>invGroups<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>A list of group ID numbers and corresponding information</p></p>
+<p class="summary"><p>Lists all group lookup data</p></p>
 
 
 
@@ -837,15 +806,13 @@ is filtered for only published entries.</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item
-group, the parent of type. Taken from the SDE table, &quot;invGroups&quot;, the list is
-filtered for only published entries.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item group, the parent of type. Taken from the SDE table, &quot;invGroups&quot;, the list is filtered for only published entries.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line164">line 164</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line132">line 132</a>
     </li></ul></dd>
     
 
@@ -928,8 +895,7 @@ filtered for only published entries.</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>Identification number for the group to which a
-particular type belongs</p></td>
+            <td class="description last"><p>Identification number for the group to which a particular type belongs</p></td>
         </tr>
 
     
@@ -980,8 +946,7 @@ particular type belongs</p></td>
 
             
 
-            <td class="description last"><p>Identification number for a category to
-which a particular group belongs</p></td>
+            <td class="description last"><p>Identification number for a category to which a particular group belongs</p></td>
         </tr>
 
     
@@ -994,9 +959,7 @@ which a particular group belongs</p></td>
 
 
 <div class="description usertext">
-    <p>Compiles an array of objects, each of which represents a different item
-group, the parent of type. Taken from the SDE table, &quot;invGroups&quot;, the list is
-filtered for only published entries.</p>
+    <p>Compiles an array of objects, each of which represents a different item group, the parent of type. Taken from the SDE table, &quot;invGroups&quot;, the list is filtered for only published entries.</p>
 </div>
 
 
@@ -1016,8 +979,7 @@ filtered for only published entries.</p>
 <h4 class="name" id="invMarketGroups"><span class="type-signature type-signature-constant">(constant) </span>invMarketGroups<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>Compiles an array of objects, each of which represents a different
-item.</p></p>
+<p class="summary"><p>Lists all market group lookup data</p></p>
 
 
 
@@ -1025,14 +987,13 @@ item.</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line104">line 104</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line79">line 79</a>
     </li></ul></dd>
     
 
@@ -1115,8 +1076,7 @@ item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>Identification number for a particular
-market group</p></td>
+            <td class="description last"><p>Identification number for a particular market group</p></td>
         </tr>
 
     
@@ -1177,8 +1137,7 @@ market group</p></td>
 
 
 <div class="description usertext">
-    <p>Compiles an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p>
+    <p>Compiles an array of objects, each of which represents a different item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p>
 </div>
 
 
@@ -1198,7 +1157,7 @@ item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p>
 <h4 class="name" id="invTypes"><span class="type-signature type-signature-constant">(constant) </span>invTypes<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>A list of type IDs and corresponding information</p></p>
+<p class="summary"><p>Lists all type lookup data</p></p>
 
 
 
@@ -1206,15 +1165,13 @@ item. Taken from the SDE table, &quot;invMarketGroups.&quot;</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;invTypes&quot;, the list is filtered for only published
-entries and only certain attributes are mapped.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Compiles an array of objects, each of which represents a different item. Taken from the SDE table, &quot;invTypes&quot;, the list is filtered for only published entries and only certain attributes are mapped.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line203">line 203</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line166">line 166</a>
     </li></ul></dd>
     
 
@@ -1345,8 +1302,7 @@ entries and only certain attributes are mapped.</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>This is displayed in-game in the show info panel
-on the &quot;description&quot; tab</p></td>
+            <td class="description last"><p>This is displayed in-game in the show info panel on the &quot;description&quot; tab</p></td>
         </tr>
 
     
@@ -1373,8 +1329,7 @@ on the &quot;description&quot; tab</p></td>
 
             
 
-            <td class="description last"><p>Identification number for the group to which a
-particular type belongs</p></td>
+            <td class="description last"><p>Identification number for the group to which a particular type belongs</p></td>
         </tr>
 
     
@@ -1401,8 +1356,7 @@ particular type belongs</p></td>
 
             
 
-            <td class="description last"><p>Identification number for the market
-group to which a particular type belongs</p></td>
+            <td class="description last"><p>Identification number for the market group to which a particular type belongs</p></td>
         </tr>
 
     
@@ -1415,9 +1369,7 @@ group to which a particular type belongs</p></td>
 
 
 <div class="description usertext">
-    <p>Compiles an array of objects, each of which represents a different
-item. Taken from the SDE table, &quot;invTypes&quot;, the list is filtered for only published
-entries and only certain attributes are mapped.</p>
+    <p>Compiles an array of objects, each of which represents a different item. Taken from the SDE table, &quot;invTypes&quot;, the list is filtered for only published entries and only certain attributes are mapped.</p>
 </div>
 
 
@@ -1445,14 +1397,13 @@ entries and only certain attributes are mapped.</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Takes invTypes and takes the typeID from each entry and returns them
-all in an array</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Takes invTypes and takes the typeID from each entry and returns them all in an array</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line357">line 357</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line196">line 196</a>
     </li></ul></dd>
     
 
@@ -1492,8 +1443,7 @@ all in an array</p></li></ul></dd>
 
 
 <div class="description usertext">
-    <p>Takes invTypes and takes the typeID from each entry and returns them
-all in an array</p>
+    <p>Takes invTypes and takes the typeID from each entry and returns them all in an array</p>
 </div>
 
 
@@ -1508,8 +1458,7 @@ all in an array</p>
 <h4 class="name" id="staticData"><span class="type-signature type-signature-constant">(constant) </span>staticData<span class="type-signature"></span></h4>
 
 
-<p class="summary"><p>An array of objects, each of which contains a name and address to an
-Eve Online Static Data Export .JSON conversion</p>.</p>
+<p class="summary"><p>Lists all SDE conversion tables and their addresses</p></p>
 
 
 
@@ -1517,14 +1466,13 @@ Eve Online Static Data Export .JSON conversion</p>.</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>An array of objects, each of which contains a name and address to an
-Eve Online Static Data Export .JSON conversion</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>An array of objects, each of which contains a name and address to an Eve Online Static Data Export .JSON conversion</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line88">line 88</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line63">line 63</a>
     </li></ul></dd>
     
 
@@ -1564,8 +1512,7 @@ Eve Online Static Data Export .JSON conversion</p></li></ul></dd>
 
 
 <div class="description usertext">
-    <p>An array of objects, each of which contains a name and address to an
-Eve Online Static Data Export .JSON conversion</p>
+    <p>An array of objects, each of which contains a name and address to an Eve Online Static Data Export .JSON conversion</p>
 </div>
 
 
@@ -1586,10 +1533,10 @@ Eve Online Static Data Export .JSON conversion</p>
 
     
 
-    <h4 class="name" id="activityName()"><span class="type-signature"></span>activityName()<span class="signature">(activityID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="activityName"><span class="type-signature"></span>activityName<span class="signature">(activityID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
-    <p class="summary usertext"><p>Returns activityName for given activityID</p></p>
+    <p class="summary usertext"><p>Returns &quot;activityName&quot; of the activity whose ID matches the given &quot;activityID&quot;</p></p>
     
 
 
@@ -1598,14 +1545,13 @@ Eve Online Static Data Export .JSON conversion</p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a activity by activity ID and returns the corresponding
-activity name</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches &quot;industryActivities&quot; for the activity whose ID matches the given &quot;activityID&quot;. If such a match is defined, returns the corresponding name for that particular activity.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line507">line 507</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line481">line 481</a>
     </li></ul></dd>
     
 
@@ -1697,8 +1643,7 @@ activity name</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>the ID number for a particular industry
-activity</p></td>
+            <td class="description last"><p>The ID number for a particular industry activity</p></td>
         </tr>
 
     
@@ -1718,6 +1663,18 @@ activity</p></td>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If &quot;activity&quot; is undefined, the function will return an error.</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -1725,7 +1682,7 @@ activity</p></td>
         
 <div class="param-desc">
     <ul>
-<li>Name of the activity represented by the given activity ID</li>
+<li>The activity name of &quot;activity&quot;, if defined</li>
 </ul>
 </div>
 
@@ -1753,10 +1710,10 @@ activity</p></td>
 
     
 
-    <h4 class="name" id="blueprints()"><span class="type-signature"></span>blueprints()<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
+    <h4 class="name" id="blueprints"><span class="type-signature"></span>blueprints<span class="signature">()</span><span class="type-signature"> &rarr; {array}</span></h4>
 
     
-    <p class="summary usertext">Compiles all the data into an array of objects.</p>
+    <p class="summary usertext"><p>Compiles all the data into single array of objects.</p></p>
     
 
 
@@ -1765,13 +1722,13 @@ activity</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Compiles all the data into an array of objects.</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Digests multiple arrays of objects, and after some destructuring, assembles and returns an array of objects, each of which contains the blueprint info, product info, quantity produced, activity type, materials cost, build time, base probability, and required skills for a single blueprint.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line526">line 526</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line536">line 536</a>
     </li></ul></dd>
     
 
@@ -1837,7 +1794,7 @@ activity</p></td>
         
 <div class="param-desc">
     <ul>
-<li></li>
+<li>An array of objects, each of which contains information on a single blueprint</li>
 </ul>
 </div>
 
@@ -1865,10 +1822,10 @@ activity</p></td>
 
     
 
-    <h4 class="name" id="categoryID()"><span class="type-signature"></span>categoryID()<span class="signature">(groupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="categoryID"><span class="type-signature"></span>categoryID<span class="signature">(groupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
-    <p class="summary usertext"><p>Returns categoryID for given groupID</p></p>
+    <p class="summary usertext"><p>Returns &quot;categoryID&quot; of the category to which the group belongs whose ID matches the given &quot;groupID&quot;</p></p>
     
 
 
@@ -1877,13 +1834,13 @@ activity</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a group by group ID and returns the corresponding category ID</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a group by group ID and if a match is defined, returns the corresponding category ID</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line466">line 466</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line437">line 437</a>
     </li></ul></dd>
     
 
@@ -1975,7 +1932,7 @@ activity</p></td>
 
             
 
-            <td class="description last"><p>the ID number for a particular item group</p></td>
+            <td class="description last"><p>The ID number for a particular group</p></td>
         </tr>
 
     
@@ -1995,6 +1952,18 @@ activity</p></td>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If &quot;group&quot; is undefined, the function will return an error</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -2002,7 +1971,7 @@ activity</p></td>
         
 <div class="param-desc">
     <ul>
-<li></li>
+<li>The ID of the category of the group whose ID matches &quot;groupID&quot;, if defined</li>
 </ul>
 </div>
 
@@ -2030,10 +1999,10 @@ activity</p></td>
 
     
 
-    <h4 class="name" id="categoryName()"><span class="type-signature"></span>categoryName()<span class="signature">(categoryID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="categoryName"><span class="type-signature"></span>categoryName<span class="signature">(categoryID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
-    <p class="summary usertext"><p>Returns categoryName for given categoryID</p></p>
+    <p class="summary usertext"><p>Returns &quot;categoryName&quot; of the category whose ID matches the given &quot;categoryID&quot;</p></p>
     
 
 
@@ -2042,14 +2011,13 @@ activity</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a category by category ID and returns the corresponding
-category name</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches &quot;invCategories&quot; for the category whose ID matches the given &quot;categoryID&quot;. If such a match is defined, returns the corresponding name for that particular category.</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line485">line 485</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line459">line 459</a>
     </li></ul></dd>
     
 
@@ -2141,7 +2109,7 @@ category name</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>the ID number for a particular item category</p></td>
+            <td class="description last"><p>ID number for a particular category</p></td>
         </tr>
 
     
@@ -2161,6 +2129,18 @@ category name</p></li></ul></dd>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If &quot;category&quot; is undefined, the function will return an error</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -2168,7 +2148,7 @@ category name</p></li></ul></dd>
         
 <div class="param-desc">
     <ul>
-<li></li>
+<li>The name of the category whose ID matches &quot;categoryID&quot;, if defined.</li>
 </ul>
 </div>
 
@@ -2199,8 +2179,7 @@ category name</p></li></ul></dd>
     <h4 class="name" id="getData"><span class="type-signature"></span>getData<span class="signature">(options)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
-    <p class="summary usertext"><p>Fetches the given Eve Online Static Data Export .JSON conversion and
-returns the parsed JSON</p></p>
+    <p class="summary usertext"><p>Fetches .json for the given SDE conversion by given name and parses it</p></p>
     
 
 
@@ -2209,13 +2188,13 @@ returns the parsed JSON</p></p>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Fetches .json for the given SDE conversion by given name and parses it</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Fetches the given Eve Online Static Data Export .JSON conversion and returns the parsed JSON</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line49">line 49</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line506">line 506</a>
     </li></ul></dd>
     
 
@@ -2316,8 +2295,7 @@ returns the parsed JSON</p></p>
                 </td>
             
 
-            <td class="description last"><p>The name of the requested
-.JSON conversion file.</p></td>
+            <td class="description last"><p>The name of the requested .JSON conversion file</p></td>
         </tr>
 
     
@@ -2358,8 +2336,7 @@ returns the parsed JSON</p></p>
                 </td>
             
 
-            <td class="description last"><p>The address of the
-desired .JSON conversion file, has preference over options.tableName.</p></td>
+            <td class="description last"><p>The address of the desired .JSON conversion file</p></td>
         </tr>
 
     
@@ -2421,8 +2398,7 @@ desired .JSON conversion file, has preference over options.tableName.</p></td>
 
             
 
-            <td class="description last"><p>An object containing properties which are parameters for
-getData</p></td>
+            <td class="description last"><p>An object containing properties which are parameters for getData</p></td>
         </tr>
 
     
@@ -2448,7 +2424,7 @@ getData</p></td>
 
     <div class="param-desc usertext">
     
-        <p>Will throw error if neither tableName nor tableAddress are defined</p>
+        <p>Will throw error if &quot;tableName&quot; is not defined</p>
     
     </div>
 
@@ -2489,7 +2465,7 @@ getData</p></td>
 
     
 
-    <h4 class="name" id="groupID()"><span class="type-signature"></span>groupID()<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="groupID"><span class="type-signature"></span>groupID<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {number}</span></h4>
 
     
     <p class="summary usertext"><p>Returns groupID for a given typeID</p></p>
@@ -2501,13 +2477,13 @@ getData</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a type by type ID and returns the corresponding group ID</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a type by type ID and returns the corresponding group ID</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line387">line 387</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line346">line 346</a>
     </li></ul></dd>
     
 
@@ -2619,6 +2595,18 @@ getData</p></td>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>returns an error if &quot;group&quot; is undefined</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -2654,7 +2642,7 @@ getData</p></td>
 
     
 
-    <h4 class="name" id="groupName()"><span class="type-signature"></span>groupName()<span class="signature">(groupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="groupName"><span class="type-signature"></span>groupName<span class="signature">(groupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
     <p class="summary usertext"><p>Returns groupName for a given groupID</p></p>
@@ -2666,13 +2654,13 @@ getData</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a group by group ID and returns the corresponding group name</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a group by group ID and returns the corresponding group name</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line408">line 408</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line367">line 367</a>
     </li></ul></dd>
     
 
@@ -2784,6 +2772,18 @@ getData</p></td>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>returns an error if &quot;group&quot; is undefined</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -2791,7 +2791,7 @@ getData</p></td>
         
 <div class="param-desc">
     <ul>
-<li></li>
+<li>The name of the group whose ID matches &quot;groupID&quot;</li>
 </ul>
 </div>
 
@@ -2819,10 +2819,10 @@ getData</p></td>
 
     
 
-    <h4 class="name" id="marketGroupID()"><span class="type-signature"></span>marketGroupID()<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="marketGroupID"><span class="type-signature"></span>marketGroupID<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
-    <p class="summary usertext"><p>Returns marketGroupID for a given typeID</p></p>
+    <p class="summary usertext"><p>Returns &quot;marketGroupID&quot; for a given &quot;typeID&quot;</p></p>
     
 
 
@@ -2831,14 +2831,13 @@ getData</p></td>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a type by type ID in invTypes and returns the corresponding
-market group ID</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a type by type ID in invTypes and if a match is defined, returns the corresponding market group ID</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line429">line 429</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line389">line 389</a>
     </li></ul></dd>
     
 
@@ -2950,6 +2949,18 @@ market group ID</p></li></ul></dd>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If &quot;marketGroup&quot; is undefined, the function will return an error</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -2985,10 +2996,10 @@ market group ID</p></li></ul></dd>
 
     
 
-    <h4 class="name" id="marketGroupName()"><span class="type-signature"></span>marketGroupName()<span class="signature">(marketGroupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="marketGroupName"><span class="type-signature"></span>marketGroupName<span class="signature">(marketGroupID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
-    <p class="summary usertext"><p>Returns marketGroupName for a given marketGroupID</p></p>
+    <p class="summary usertext"><p>Returns &quot;marketGroupName&quot; for a given &quot;marketGroupID&quot;</p></p>
     
 
 
@@ -2997,14 +3008,13 @@ market group ID</p></li></ul></dd>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a market group by market group ID and returns the
-corresponding market group name</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a market group by market group ID and if a match is defined, returns the corresponding market group name</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line449">line 449</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line413">line 413</a>
     </li></ul></dd>
     
 
@@ -3096,8 +3106,7 @@ corresponding market group name</p></li></ul></dd>
 
             
 
-            <td class="description last"><p>the ID number for a particular item market
-group</p></td>
+            <td class="description last"><p>the ID number for a particular market group</p></td>
         </tr>
 
     
@@ -3117,6 +3126,18 @@ group</p></td>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>If &quot;marketGroup&quot; is undefined, the function will return an error</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -3124,8 +3145,7 @@ group</p></td>
         
 <div class="param-desc">
     <ul>
-<li>The name of the market group to which the given market group ID
-belongs</li>
+<li>The name of the market group whose ID matches &quot;marketGroupID&quot;, if defined</li>
 </ul>
 </div>
 
@@ -3153,7 +3173,7 @@ belongs</li>
 
     
 
-    <h4 class="name" id="typeName()"><span class="type-signature"></span>typeName()<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="typeName"><span class="type-signature"></span>typeName<span class="signature">(typeID)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
     <p class="summary usertext"><p>Returns typeName for a given typeID</p></p>
@@ -3165,13 +3185,13 @@ belongs</li>
 <dl class="details">
     
     <dt class="tag-description">Description:</dt>
-    <dd class="tag-description"><ul class="dummy"><li><p>Looks up a type by typeID and returns the corresponding typeName</p></li></ul></dd>
+    <dd class="tag-description"><ul class="dummy"><li><p>Searches for a type by typeID and returns the corresponding typeName</p></li></ul></dd>
     
 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line367">line 367</a>
+        <a href="buildIndustryObject.js.html">buildIndustryObject.js</a>, <a href="buildIndustryObject.js.html#line326">line 326</a>
     </li></ul></dd>
     
 
@@ -3283,6 +3303,18 @@ belongs</li>
 
 
 
+<h5 class="h5-throws">Throws:</h5>
+
+        
+
+    <div class="param-desc usertext">
+    
+        <p>returns an error if &quot;type&quot; is undefined</p>
+    
+    </div>
+
+
+    
 
 
 <h5 class="h5-returns">Returns:</h5>
@@ -3333,7 +3365,7 @@ belongs</li>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Mon Jan 02 2023 07:17:06 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Thu Jan 05 2023 00:03:58 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
