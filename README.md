@@ -1,30 +1,31 @@
-<div align="center">
+
+# 🎇 buildIndustryObject.js
 
 ![Google Drive Badge](https://img.shields.io/badge/%20-Google%20Drive-%20?style=for-the-badge&color=purple&label=%20&logo=googledrive&logoColor=white&logowidth=60)
 ![Google Sheets Badge](https://img.shields.io/badge/%20-Google%20Sheets-%20?style=for-the-badge&color=purple&label=%20&logo=googlesheets&logoColor=white&logowidth=60)
 ![V8 Badge](https://img.shields.io/badge/%20-V8-%20?style=for-the-badge&color=purple&label=%20&logo=v8&logoColor=white&logowidth=60)
 ![Swagger Badge](https://img.shields.io/badge/%20-Swagger-%20?style=for-the-badge&color=purple&label=%20&logo=swagger&logoColor=white&logowidth=60)
 ![javascript Badge](https://img.shields.io/badge/%20-javascript-%20?style=for-the-badge&color=purple&label=%20&logo=javascript&logoColor=white&logowidth=60)
+![Read The Docs Badge](https://img.shields.io/badge/%20-Read%20The%20Docs-%20?style=for-the-badge&color=purple&label=%20&logo=readthedocs&logoColor=white&logowidth=60)
+![json Badge](https://img.shields.io/badge/%20-json-%20?style=for-the-badge&color=purple&label=%20&logo=json&logoColor=white&logowidth=60)
 
-# 🎇 buildIndustryObject.js
+## A script for Eve Online Industry
 
-</div>
+### Overview 👀
 
-## Overview 👀
-
-### 👨‍🚀 A Google Apps Script that gathers various data from the 🌌 Eve Online Static Data Export and compiles them into a .JSON object to be used for calculating the material and time costs of running a given job. 🚀
-
----
-
-## 📄 Documentation ![Read The Docs Badge](https://img.shields.io/badge/%20-Read%20The%20Docs-%20?style=for-the-badge&color=purple&label=%20&logo=readthedocs&logoColor=white&logowidth=60)
-
-### [Click here 🔗](https://phobiacide.github.io/buildIndustryObject/) to view the docs!
+#### 👨‍🚀 A Google Apps Script that gathers various data from the 🌌 Eve Online Static Data Export and compiles them into a .JSON object to be used for calculating the material and time costs of running a given job. 🚀
 
 ---
 
-## 🪐 Sample Output ![json Badge](https://img.shields.io/badge/%20-json-%20?style=for-the-badge&color=purple&label=%20&logo=json&logoColor=white&logowidth=60)
+### 📄 Documentation 
 
-### What follows is the industry data for building a Bantam
+#### [Click here 🔗](https://phobiacide.github.io/buildIndustryObject/) to view the docs!
+
+---
+
+### 🪐 Sample Output 
+
+#### What follows is the industry data for building a Bantam
 
 ```json
 [
