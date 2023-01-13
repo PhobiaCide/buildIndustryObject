@@ -29,7 +29,7 @@
 <nav >
     
     
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activityName">activityName</a></li><li><a href="global.html#blueprints">blueprints</a></li><li><a href="global.html#categoryID">categoryID</a></li><li><a href="global.html#categoryName">categoryName</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#groupID">groupID</a></li><li><a href="global.html#groupName">groupName</a></li><li><a href="global.html#industryActivities">industryActivities</a></li><li><a href="global.html#industryActivity">industryActivity</a></li><li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li><li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li><li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li><li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li><li><a href="global.html#invCategories">invCategories</a></li><li><a href="global.html#invGroups">invGroups</a></li><li><a href="global.html#invMarketGroups">invMarketGroups</a></li><li><a href="global.html#invTypes">invTypes</a></li><li><a href="global.html#marketGroupID">marketGroupID</a></li><li><a href="global.html#marketGroupName">marketGroupName</a></li><li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li><li><a href="global.html#staticData">staticData</a></li><li><a href="global.html#typeName">typeName</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#activityName">activityName</a></li><li><a href="global.html#activityType">activityType</a></li><li><a href="global.html#blueprint">blueprint</a></li><li><a href="global.html#blueprints">blueprints</a></li><li><a href="global.html#categoryID">categoryID</a></li><li><a href="global.html#categoryName">categoryName</a></li><li><a href="global.html#filters">filters</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#groupID">groupID</a></li><li><a href="global.html#groupName">groupName</a></li><li><a href="global.html#industryActivities">industryActivities</a></li><li><a href="global.html#industryActivity">industryActivity</a></li><li><a href="global.html#industryActivityMaterials">industryActivityMaterials</a></li><li><a href="global.html#industryActivityProbabilities">industryActivityProbabilities</a></li><li><a href="global.html#industryActivityProducts">industryActivityProducts</a></li><li><a href="global.html#industryActivitySkills">industryActivitySkills</a></li><li><a href="global.html#invCategories">invCategories</a></li><li><a href="global.html#invGroups">invGroups</a></li><li><a href="global.html#invMarketGroups">invMarketGroups</a></li><li><a href="global.html#invTypes">invTypes</a></li><li><a href="global.html#lookup">lookup</a></li><li><a href="global.html#marketGroupID">marketGroupID</a></li><li><a href="global.html#marketGroupName">marketGroupName</a></li><li><a href="global.html#materialData">materialData</a></li><li><a href="global.html#materials">materials</a></li><li><a href="global.html#probabilities">probabilities</a></li><li><a href="global.html#probability">probability</a></li><li><a href="global.html#publishedTypeIDs">publishedTypeIDs</a></li><li><a href="global.html#skills">skills</a></li><li><a href="global.html#staticData">staticData</a></li><li><a href="global.html#time">time</a></li><li><a href="global.html#typeName">typeName</a></li></ul>
     
 </nav>
 
@@ -45,7 +45,8 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
+            <pre class="prettyprint source linenums"><code>"use strict";
+/**
  * @file
  * @alias buildIndustryObject.js
  * @version 2.0.0
@@ -61,11 +62,11 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-const HEADER = `
+const FILE_NAME = `
 █▀▀▄ █░░█ ░▀░ █░░ █▀▀▄ ░▀░ █▀▀▄ █▀▀▄ █░░█ █▀▀█ █▀▀▄ ░░▀ █▀▀ █▀▀ ▀▀█▀▀ ░ ░░▀ █▀▀
 █▀▀▄ █░░█ ▀█▀ █░░ █░░█ ▀█▀ █░░█ █░░█ █▄▄█ █░░█ █▀▀▄ ░░█ █▀▀ █░░ ░░█░░ ▄ ░░█ ▀▀█
 ▀▀▀░ ░▀▀▀ ▀▀▀ ▀▀▀ ▀▀▀░ ▀▀▀ ▀░░▀ ▀▀▀░ ▄▄▄█ ▀▀▀▀ ▀▀▀░ █▄█ ▀▀▀ ▀▀▀ ░░▀░░ █ █▄█ ▀▀▀`;
+
 /**
  * @constant
  * @alias industryActivities
@@ -132,9 +133,6 @@ const invMarketGroups = Object.freeze(
         marketGroupName: marketGroup.marketGroupName
       });
     })
-    .sort((marketGroupA, marketGroupB) => {
-      return marketGroupA.marketGroupID - marketGroupB.marketGroupID;
-    })
 );
 
 /**
@@ -156,13 +154,11 @@ const invCategories = Object.freeze(
     // map for each category...
     .map(category => {
       // return an object with these properties...
+      const { categoryID, categoryName } = category;
       return Object.freeze({
-        categoryID: category.categoryID,
-        categoryName: category.categoryName
+        categoryID,
+        categoryName
       });
-    })
-    .sort((categoryA, categoryB) => {
-      return categoryA.categoryID - categoryB.categoryID;
     })
 );
 
@@ -186,15 +182,12 @@ const invGroups = Object.freeze(
     // map for each group...
     .map(group => {
       // return an object with these attributes...
+      const { groupID, groupName, categoryID } = group;
       return Object.freeze({
-        groupID: group.groupID,
-        groupName: group.groupName,
-        categoryID: group.categoryID
+        groupID,
+        groupName,
+        categoryID
       });
-    })
-    // sort by groupID ascending
-    .sort((groupA, groupB) => {
-      return groupA.groupID - groupB.groupID;
     })
 );
 
@@ -220,17 +213,14 @@ const invTypes = Object.freeze(
     // map for each type...
     .map(type => {
       // return an object with these properties...
+      const { typeID, groupID, typeName, description, marketGroupID } = type;
       return Object.freeze({
-        typeID: type.typeID,
-        groupID: type.groupID,
-        typeName: type.typeName,
-        description: type.description,
-        marketGroupID: type.marketGroupID
+        typeID,
+        groupID,
+        typeName,
+        description,
+        marketGroupID
       });
-    })
-    // sort by typeID ascending
-    .sort((typeA, typeB) => {
-      return typeA.typeID - typeB.typeID;
     })
 );
 
@@ -244,6 +234,17 @@ const publishedTypeIDs = invTypes.map(entry => entry.typeID);
 
 /**
  * @constant
+ * @alias filters
+ */
+const filters = {
+  unpublished: (type) => {
+    const { typeID } = type;
+    return publishedTypeIDs.includes(typeID);
+  }
+};
+
+/**
+ * @constant
  * @alias industryActivityMaterials
  * @summary Lists all materials for a particular blueprint and activity
  * @description Returns an array of objects, each of which represents a different blueprint. Taken from the SDE table, "industryActivityMaterials", the list is filtered for only published entries.
@@ -251,15 +252,48 @@ const publishedTypeIDs = invTypes.map(entry => entry.typeID);
  */
 const industryActivityMaterials = Object.freeze(
   getData(`industryActivityMaterials`)
-    // filter blueprints for only those...
-    .filter(blueprint => {
-      // that are included in the array "publishedTypeIDs"
-      return publishedTypeIDs.includes(blueprint.typeID);
-    })
-    // sort by typeID ascending
-    .sort((blueprintA, blueprintB) => {
-      return blueprintA.typeID - blueprintB.typeID;
-    })
+    // filter out unpublished items...
+    .filter(filters.unpublished)
+);
+
+/**
+ * @constant
+ * @alias industryActivity
+ * @summary Lists time cost for each blueprint and activity combination
+ * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivities."
+ * @example [{ typeID, activityID, time }, ...]
+ */
+const industryActivity = Object.freeze(
+  getData(`industryActivity`)
+    // filter out unpublished items...
+    .filter(filters.unpublished)
+);
+
+/**
+ * @constant
+ * @alias industryActivityProbabilities
+ * @summary Lists success chance for each blueprint and activity combination
+ * @description Returns an array of objects, each of which represents a different blueprint and activity. Taken from the SDE table, "industryActivityProbabilities."
+ * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
+ */
+const industryActivityProbabilities = Object.freeze(
+  getData(`industryActivityProbabilities`)
+    // filter out unpublished items...
+    .filter(filters.unpublished)
+);
+
+/**
+ * @constant
+ * @alias industryActivitySkills
+ * @summary A list of specific activities and the skills required
+ * @description Compiles an array of objects, each of which represents a different blueprint. Taken from the SDE table, "industryActivitySkills."
+ * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
+ */
+const industryActivitySkills = Object.freeze(
+  // get industryActivitySkills
+  getData(`industryActivitySkills`)
+    // filter out unpublished items...
+    .filter(filters.unpublished)
 );
 
 /**
@@ -273,23 +307,25 @@ const industryActivityProducts = Object.freeze(
   getData(`industryActivityProducts`)
     // filter blueprints for only those...
     .filter(blueprint => {
+      const { typeID, productTypeID, activityID } = blueprint;
       return (
         // that are included in publishedTypeIDs AND...
-        publishedTypeIDs.includes(blueprint.typeID) &amp;&amp;
+        publishedTypeIDs.includes(typeID) &amp;&amp;
         // whose products are included in publishedTypeIDs AND...
-        publishedTypeIDs.includes(blueprint.productTypeID) &amp;&amp;
+        publishedTypeIDs.includes(productTypeID) &amp;&amp;
         // whose activityID is either 1 OR 9...
-        (blueprint.activityID == 1 || blueprint.activityID == 9)
+        (activityID == 1 || activityID == 9)
       );
     })
     // map for each blueprint...
     .map(blueprint => {
       // return an object with these properties...
+      const { typeID, quantity, activityID, productTypeID } = blueprint;
       return Object.freeze({
-        typeID: blueprint.typeID,
-        quantity: blueprint.quantity,
-        activityID: blueprint.activityID,
-        productTypeID: blueprint.productTypeID
+        typeID,
+        quantity,
+        activityID,
+        productTypeID
       });
     })
     // sort by typeID ascending...
@@ -300,68 +336,11 @@ const industryActivityProducts = Object.freeze(
 
 /**
  * @constant
- * @alias industryActivity
- * @summary Lists time cost for each blueprint and activity combination
- * @description Returns an array of objects, each of which represents a different item. Taken from the SDE table, "industryActivities."
- * @example [{ typeID, activityID, time }, ...]
+ * @alias lookup
  */
-const industryActivity = Object.freeze(
-  getData(`industryActivity`)
-    // filter for only types that...
-    .filter(type => {
-      // are included in publishedTypeIDs...
-      return publishedTypeIDs.includes(type.typeID);
-    })
-    // sort by typeID ascending
-    .sort((typeA, typeB) => {
-      return typeA.typeID - typeB.typeID;
-    })
-);
-
-/**
- * @constant
- * @alias industryActivityProbabilities
- * @summary Lists success chance for each blueprint and activity combination
- * @description Returns an array of objects, each of which represents a different blueprint and activity. Taken from the SDE table, "industryActivityProbabilities."
- * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
- */
-const industryActivityProbabilities = Object.freeze(
-  getData(`industryActivityProbabilities`)
-    // filter blueprints for only those...
-    .filter(blueprint => {
-      // which are included in publishedTypeIDs...
-      return publishedTypeIDs.includes(blueprint.typeID);
-    })
-    // sort by typeID ascending
-    .sort((blueprintA, blueprintB) => {
-      return blueprintA.typeID - blueprintB.typeID;
-    })
-);
-
-/**
- * @constant
- * @alias industryActivitySkills
- * @summary A list of specific activities and the skills required
- * @description Compiles an array of objects, each of which represents a different blueprint. Taken from the SDE table, "industryActivitySkills."
- * @example [{ typeID, activityID, materialTypeID, quantity }, ...]
- */
-const industryActivitySkills = Object.freeze(
-  getData(`industryActivitySkills`)
-    // filter blueprints for only those...
-    .filter(blueprint => {
-      // which are included in publishedTypeIDs...
-      return publishedTypeIDs.includes(blueprint.typeID);
-    })
-    // sort by typeID ascending
-    .sort((blueprintA, blueprintB) => {
-      return blueprintA.typeID - blueprintB.typeID;
-    })
-);
-
-
 const lookup = {
   /**
-   * @function
+   * @method
    * @alias typeName
    * @summary Returns typeName for a given typeID
    * @description Searches for a type by typeID and returns the corresponding typeName
@@ -369,20 +348,17 @@ const lookup = {
    * @param {(string|number)} typeID - The ID number for a a particular item type
    * @return {string} - The name of a particular type
    */
-
   typeName: typeID => {
     // search in invTypes...
-    const type = invTypes.find(typeData => {
+    const type = invTypes.find(type => {
       // for the type data whose ID matches typeID...
-      return typeData.typeID == typeID;
+      return type.typeID == typeID;
     });
     // return "typename" from entry if it is defined...
-    return typeof type != `undefined`
-      ? type.typeName
-      : new Error(`typeName(): {${typeof type}} ${type}!`);
+    return typeof type != `undefined` ? type.typeName : new Error(`typeName(): {${typeof type}} ${type}!`);
   },
   /**
-   * @function
+   * @method
    * @alias groupID
    * @summary Returns groupID for a given typeID
    * @description Searches for a type by type ID and returns the corresponding group ID
@@ -392,18 +368,16 @@ const lookup = {
    */
   groupID: typeID => {
     // search in invTypes...
-    const group = invTypes.find(typeData => {
+    const group = invTypes.find(type => {
       // for the type data whose ID matches typeID...
-      return typeData.typeID == typeID;
+      return type.typeID == typeID;
     });
     // return "typename" from entry if it is defined...
-    return typeof group != `undefined`
-      ? group.groupID
-      : new Error(`groupID(): {${typeof group}} ${group}!`);
+    return typeof group != `undefined` ? group.groupID : new Error(`groupID(): {${typeof group}} ${group}!`);
   },
 
   /**
-   * @function
+   * @method
    * @alias groupName
    * @summary Returns groupName for a given groupID
    * @description Searches for a group by group ID and returns the corresponding group name
@@ -413,19 +387,18 @@ const lookup = {
    */
   groupName: groupID => {
     // search in invGroups...
-    const group = invGroups.find(groupData => {
+    const group = invGroups.find(group => {
       // for group data whose ID matches "groupID"...
-      return groupData.groupID == groupID;
+      return group.groupID == groupID;
     });
     // return "groupName" from group if it is defined...
-    return typeof group != `undefined`
-      ? group.groupName
-      : // if not defined, return an error...
-      new Error(`groupName(): {${typeof group}} ${group}!`);
+    return typeof group != `undefined` ? group.groupName
+      // if not defined, return an error...
+      : new Error(`groupName(): {${typeof group}} ${group}!`);
   },
 
   /**
-   * @function
+   * @method
    * @alias marketGroupID
    * @summary Returns "marketGroupID" for a given "typeID"
    * @description Searches for a type by type ID in invTypes and if a match is defined, returns the corresponding market group ID
@@ -435,21 +408,20 @@ const lookup = {
    */
   marketGroupID: typeID => {
     // search in invTypes...
-    const marketGroup = invTypes.find(typeData => {
+    const marketGroup = invTypes.find(type => {
       // for a type data whose ID matches "typeID"...
-      return typeData.typeID == typeID;
+      return type.typeID == typeID;
     });
     // return "marketGroupID" from  "marketGroup" if defined...
-    return typeof marketGroup != `undefined`
-      ? marketGroup.marketGroupID
-      : // if not defined, return an error...
-      new Error(
-        `marketGroupID(): {${typeof marketGroup}} ${marketGroupID}`
+    return typeof marketGroup != `undefined` ? marketGroup.marketGroupID
+      // if not defined, return an error...
+      : new Error(
+        `marketGroupID(): {${typeof marketGroup}} ${marketGroup}`
       );
   },
 
   /**
-   * @function
+   * @method
    * @alias marketGroupName
    * @summary Returns "marketGroupName" for a given "marketGroupID"
    * @description Searches for a market group by market group ID and if a match is defined, returns the corresponding market group name
@@ -459,21 +431,20 @@ const lookup = {
    */
   marketGroupName: marketGroupID => {
     // search in "invMarketGroups"...
-    const marketGroup = invMarketGroups.find(marketGroupData => {
+    const marketGroup = invMarketGroups.find(marketGroup => {
       // for the market group data whose ID matches "marketGroupID"...
-      return marketGroupData.marketGroupID == marketGroupID;
+      return marketGroup.marketGroupID == marketGroupID;
     });
     // return "marketGroupName" of "marketGroup" if defined...
-    return typeof marketGroup != `undefined`
-      ? marketGroup.marketGroupName
-      : // if not defined, return an error...
-      new Error(
+    return typeof marketGroup != `undefined` ? marketGroup.marketGroupName
+      // if not defined, return an error...
+      : new Error(
         `marketGroupName(): {${typeof marketGroup}} ${marketGroup})!`
       );
   },
 
   /**
-   * @function
+   * @method
    * @alias categoryID
    * @summary Returns "categoryID" of the category to which the group belongs whose ID matches the given "groupID"
    * @description Searches for a group by group ID and if a match is defined, returns the corresponding category ID
@@ -483,19 +454,18 @@ const lookup = {
    */
   categoryID: groupID => {
     // search in "invGroups"...
-    const group = invGroups.find(groupData => {
+    const group = invGroups.find(group => {
       // for the group data whose ID matches "groupID"...
-      return groupData.groupID == groupID;
+      return group.groupID == groupID;
     });
     // return "categoryID" of "group" if defined...
-    return typeof group != `undefined`
-      ? group.categoryID
-      : // if not defined, return an error...
-      new Error(`categoryID(): {${typeof group}} ${group}`);
+    return typeof group != `undefined` ? group.categoryID
+      // if not defined, return an error...
+      : new Error(`categoryID(): {${typeof group}} ${group}`);
   },
 
   /**
-   * @function
+   * @method
    * @alias categoryName
    * @summary Returns "categoryName" of the category whose ID matches the given "categoryID"
    * @description Searches "invCategories" for the category whose ID matches the given "categoryID". If such a match is defined, returns the corresponding name for that particular category.
@@ -505,19 +475,19 @@ const lookup = {
    */
   categoryName: categoryID => {
     // search in invCategories...
-    const category = invCategories.find(categoryData => {
+    const category = invCategories.find(category => {
       // for the category data whose ID matches "categoryID"...
-      return categoryData.categoryID == categoryID;
+      return category.categoryID == categoryID;
     });
     // return "categoryName" of "category" if defined...
-    return typeof category != `undefined`
-      ? category.categoryName
-      : // if not defined, return an error...
-      new Error(`categoryName(): {${typeof category}} ${category}!`);
+    return typeof category != `undefined` ? category.categoryName
+      // if not defined, return an error...
+      : new Error(`categoryName(): {${typeof category}} ${category}!`)
+      ;
   },
 
   /**
-   * @function
+   * @method
    * @alias activityName
    * @summary Returns "activityName" of the activity whose ID matches the given "activityID"
    * @description Searches "industryActivities" for the activity whose ID matches the given "activityID". If such a match is defined, returns the corresponding name for that particular activity.
@@ -526,16 +496,16 @@ const lookup = {
    * @return {string} - The activity name of "activity", if defined
    */
   activityName: activityID => {
-    // search in invTypes...
-    const activity = industryActivities.find(activityData => {
+    // search in industryActivities...
+    const activity = industryActivities.find(activity => {
       // for the activity data whose ID matches "activityID"...
-      return activityData.activityID == activityID;
+      return activity.activityID == activityID;
     });
     // return "typename" from "activity" if it is defined...
-    return typeof activity != 'undefined'
-      ? activity.activityName
-      : // if not defined, return an error...
-      new Error(`activityName(): {${typeof activity}} ${activity}!`);
+    return typeof activity != 'undefined' ? activity.activityName
+      // if not defined, return an error...
+      : new Error(`activityName(): {${typeof activity}} ${activity}!`)
+      ;
   }
 };
 
@@ -551,26 +521,43 @@ const lookup = {
   * @return {object} - The requested data
   */
 function getData(tableName = false) {
-  return !tableName
-    ? new Error(`getData, Error: tableName in not defined!`)
+  return !tableName ? new Error(`getData, Error: tableName in not defined!`)
     : JSON.parse(
       UrlFetchApp.fetch(
-        staticData.find(table => {
-          return table.name == tableName;
-        }).href
+        staticData.find(table => table.name == tableName).href
       ).getContentText()
     );
 }
 
-function buildData(typeID) {
-  const groupID = lookup.groupID(typeID);
+/**
+ * @function
+ * @alias materialData
+ * @summary builds an object from predefined data for the given "typeID"
+ * @description By performing a series of lookup functions, acquires data referring to type, group, category, and market group name of the given type ID and assembles them into an object.
+ * @param {(number|string)} typeID - ID for a given type
+ * @return {object} - the assembled data
+ */
+function materialData(typeID) {
 
-  return Object.freeze({
-    name: lookup.typeName(typeID),
-    group: lookup.groupName(groupID),
-    marketGroup: lookup.marketGroupName(lookup.marketGroupID(typeID)),
-    category: lookup.categoryName(lookup.categoryID(groupID)),
+  const name = lookup.typeName(typeID);
+  const groupID = lookup.groupID(typeID);
+  const group = lookup.groupName(groupID);
+  const category = lookup.categoryName(lookup.categoryID(groupID));
+  const marketGroup = lookup.marketGroupName(lookup.marketGroupID(typeID));
+  // if market group is undefined, skip it.
+  return marketGroup != `undefined` ? Object.freeze({
+    name,
+    group,
+    typeID,
+    category,
+    marketGroup
+  }) : Object.freeze({
+    name,
+    group,
+    typeID,
+    category
   });
+
 }
 
 /**
@@ -585,26 +572,27 @@ function blueprints() {
     // call the "reduce" array method to remove duplicates...
     industryActivityProducts
       .reduce(
-        (uniqueList, item) =>
-          // if "item" is already listed in "unique", then "unique" is left unchanged otherwise, add "item" to "unique"...
-          uniqueList.includes(item.productTypeID)
-            ? uniqueList
-            : [...uniqueList, item.productTypeID],
+        // if "item" is already listed in "unique"... // then "unique" is left unchanged...
+        (uniqueList, item) => uniqueList.includes(item.productTypeID) ? uniqueList
+          // otherwise, add "item" to "unique"...
+          : [...uniqueList, item.productTypeID],
         // initial value for unique
         []
       )
       .map(productTypeID => {
         // get the variables activityID, blueprintTypeID, and quantity from...
-        const {
-          activityID,
-          typeID: blueprintTypeID,
-          quantity
+        const { quantity, activityID, typeID: blueprintTypeID } =
           // the blueprint found in industryActivityProducts...
-        } = industryActivityProducts.find(blueprint => {
-          // whose product has an ID which matches productTypeID...
-          return blueprint.productTypeID == productTypeID;
-        });
+          industryActivityProducts.find(blueprint => {
+            // whose product has an ID which matches productTypeID...
+            return blueprint.productTypeID == productTypeID;
+          });
 
+        /**
+         * @constant
+         * @alias materials
+         * @summary all the materials that match the current blueprint
+         */
         const materials = industryActivityMaterials
           .filter(blueprint => {
             return (
@@ -614,13 +602,17 @@ function blueprints() {
           })
           .map(material => {
             const { materialTypeID, quantity } = material;
-            Object.freeze(
-              Object.assign(
-                { quantity },
-                buildData(materialTypeID)
-              )
+            return Object.assign(
+              { quantity },
+              materialData(materialTypeID)
             );
           });
+
+        /**
+         * @constant
+         * @alias time
+         * @summary the base time to run the current job in seconds
+         */
         const { time } = industryActivity.find(activity => {
           return (
             activity.typeID == blueprintTypeID &amp;&amp;
@@ -628,6 +620,11 @@ function blueprints() {
           );
         });
 
+        /**
+         * @constant
+         * @alias skills
+         * @summary skills required to run the current job
+         */
         const skills = industryActivitySkills
           .filter(activity => {
             return (
@@ -637,30 +634,63 @@ function blueprints() {
           })
           .map(activity => {
             return {
-              level: activity.level,
+              level: parseInt(activity.level),
               skill: lookup.typeName(activity.skillID)
             };
           });
-        const probability = industryActivityProbabilities.find(
-          activity => {
+
+        /**
+         * @constant
+         * @alias probabilities
+         * @summary parent of "probability"
+         */
+        const probabilities =
+          industryActivityProbabilities.find(activity => {
             return (
               activity.typeID == blueprintTypeID &amp;&amp;
               activity.activityID == activityID
             );
-          }
-        ).probability || 1;
+          });
 
-        return Object.freeze({
-          blueprint: buildData(blueprintTypeID),
-          product: buildData(productTypeID),
-          quantity,
-          activityType: activityID => lookup.activityName(activityID),
-          materials,
-          time,
-          probability,
-          skills
-        });
-      })
+        /**
+         * @constant
+         * @alias probability
+         * @summary the chance of success of the current job
+         */
+        const probability = typeof probabilities != `undefined` ? parseFloat(probabilities.probability)
+          : 1
+          ;
+
+        /**
+         * @constant
+         * @alias activityType
+         * @summary the activity of the current blueprint
+         */
+        const activityType = lookup.activityName(activityID);
+
+        /**
+         * @constant
+         * @alias blueprint
+         * @summary group, category, and market group data for current blueprint
+         */
+        const blueprint = materialData(blueprintTypeID);
+
+        return Object.freeze(
+          Object.assign(
+            {
+              time,
+              skills,
+              quantity,
+              blueprint,
+              materials,
+              probability,
+              activityType
+            },
+            materialData(productTypeID)
+          )
+        );
+      }
+      )
   );
 }</code></pre>
         </article>
@@ -676,7 +706,7 @@ function blueprints() {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Thu Jan 05 2023 00:03:58 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.0</a> on Fri Jan 13 2023 02:27:24 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
